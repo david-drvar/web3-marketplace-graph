@@ -1,0 +1,32 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Marketplace
+    network: sepolia
+    source:
+      address: "0xB4b7589073025f14057fe0d07616eC0e9ca99B50"
+      abi: Marketplace
+      startBlock: 5780522
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ItemBought
+        - ItemDeleted
+        - ItemListed
+      abis:
+        - name: Marketplace
+          file: ./abis/Marketplace.json
+      eventHandlers:
+        - event: ItemBought(indexed uint256,indexed address,indexed address)
+          handler: handleItemBought
+        - event: ItemDeleted(indexed uint256,indexed address)
+          handler: handleItemDeleted
+        - event: ItemListed(indexed uint256,indexed address,string,string,uint256)
+          handler: handleItemListed
+      file: ./src/marketplace.ts

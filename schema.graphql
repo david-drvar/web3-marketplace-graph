@@ -1,0 +1,30 @@
+type ItemBought @entity(immutable: true) {
+  id: Bytes!
+  Marketplace_id: BigInt! # uint256
+  seller: Bytes! # address
+  buyer: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ItemDeleted @entity(immutable: true) {
+  id: Bytes!
+  Marketplace_id: BigInt! # uint256
+  seller: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ItemListed @entity(immutable: true) {
+  id: Bytes!
+  Marketplace_id: BigInt! # uint256
+  seller: Bytes! # address
+  title: String! # string
+  description: String! # string
+  price: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
