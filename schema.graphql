@@ -1,29 +1,18 @@
-type ItemBought @entity(immutable: true) {
-  id: Bytes!
-  Marketplace_id: BigInt! # uint256
-  seller: Bytes! # address
-  buyer: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+enum ItemStatus {
+  Listed
+  Bought
+  Deleted
 }
 
-type ItemDeleted @entity(immutable: true) {
-  id: Bytes!
-  Marketplace_id: BigInt! # uint256
-  seller: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type ItemListed @entity(immutable: true) {
-  id: Bytes!
-  Marketplace_id: BigInt! # uint256
-  seller: Bytes! # address
+type Item @entity {
+  id: String!
+  buyer: Bytes! # Address 0x0000... if no one has bought it yet
+  seller: Bytes!
   title: String! # string
   description: String! # string
   price: BigInt! # uint256
+  photosIPFSHashes: [String!]! # array of strings that are photo hashes
+  itemStatus: ItemStatus!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!

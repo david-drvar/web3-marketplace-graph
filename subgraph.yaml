@@ -8,9 +8,9 @@ dataSources:
     name: Marketplace
     network: sepolia
     source:
-      address: "0xB4b7589073025f14057fe0d07616eC0e9ca99B50"
+      address: "0x51f532f90408BFb2d34943134a11296cB72Cea31"
       abi: Marketplace
-      startBlock: 5780522
+      startBlock: 5796977
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -27,6 +27,6 @@ dataSources:
           handler: handleItemBought
         - event: ItemDeleted(indexed uint256,indexed address)
           handler: handleItemDeleted
-        - event: ItemListed(indexed uint256,indexed address,string,string,uint256)
+        - event: ItemListed(indexed uint256,indexed address,string,string,uint256,string[])
           handler: handleItemListed
       file: ./src/marketplace.ts

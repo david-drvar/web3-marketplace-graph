@@ -15,11 +15,22 @@
     "name": "ItemNotListed",
     "type": "error"
   },
-  { "inputs": [], "name": "PriceMustBeAboveZero", "type": "error" },
+  {
+    "inputs": [{ "internalType": "string", "name": "hash", "type": "string" }],
+    "name": "NotIPFSHash",
+    "type": "error"
+  },
   {
     "inputs": [
-      { "internalType": "address", "name": "sellerAddress", "type": "address" }
+      { "internalType": "address", "name": "sellerAddress", "type": "address" },
+      { "internalType": "string", "name": "title", "type": "string" }
     ],
+    "name": "PhotoLimitExceeded",
+    "type": "error"
+  },
+  { "inputs": [], "name": "PriceMustBeAboveZero", "type": "error" },
+  {
+    "inputs": [{ "internalType": "address", "name": "sellerAddress", "type": "address" }],
     "name": "SellerCannotBuyItsItem",
     "type": "error"
   },
@@ -108,10 +119,23 @@
         "internalType": "uint256",
         "name": "price",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string[]",
+        "name": "photosIPFSHashes",
+        "type": "string[]"
       }
     ],
     "name": "ItemListed",
     "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_PHOTO_LIMIT",
+    "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "inputs": [
@@ -131,11 +155,22 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "getItemCount",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       { "internalType": "string", "name": "_title", "type": "string" },
       { "internalType": "string", "name": "_description", "type": "string" },
       { "internalType": "uint256", "name": "_price", "type": "uint256" },
-      { "internalType": "uint256", "name": "_date", "type": "uint256" }
+      {
+        "internalType": "string[]",
+        "name": "photosIPFSHashes",
+        "type": "string[]"
+      }
     ],
     "name": "listNewItem",
     "outputs": [],
