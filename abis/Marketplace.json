@@ -15,11 +15,7 @@
     "name": "ItemNotListed",
     "type": "error"
   },
-  {
-    "inputs": [{ "internalType": "string", "name": "hash", "type": "string" }],
-    "name": "NotIPFSHash",
-    "type": "error"
-  },
+  { "inputs": [{ "internalType": "string", "name": "hash", "type": "string" }], "name": "NotIPFSHash", "type": "error" },
   {
     "inputs": [
       { "internalType": "address", "name": "sellerAddress", "type": "address" },
@@ -29,11 +25,7 @@
     "type": "error"
   },
   { "inputs": [], "name": "PriceMustBeAboveZero", "type": "error" },
-  {
-    "inputs": [{ "internalType": "address", "name": "sellerAddress", "type": "address" }],
-    "name": "SellerCannotBuyItsItem",
-    "type": "error"
-  },
+  { "inputs": [{ "internalType": "address", "name": "sellerAddress", "type": "address" }], "name": "SellerCannotBuyItsItem", "type": "error" },
   {
     "inputs": [
       { "internalType": "address", "name": "sellerAddress", "type": "address" },
@@ -46,24 +38,9 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "id",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "seller",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "buyer",
-        "type": "address"
-      }
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "seller", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "buyer", "type": "address" }
     ],
     "name": "ItemBought",
     "type": "event"
@@ -71,18 +48,8 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "id",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "seller",
-        "type": "address"
-      }
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "seller", "type": "address" }
     ],
     "name": "ItemDeleted",
     "type": "event"
@@ -90,53 +57,30 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "id",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "seller",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "title",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "description",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "price",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "string[]",
-        "name": "photosIPFSHashes",
-        "type": "string[]"
-      }
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "seller", "type": "address" },
+      { "indexed": false, "internalType": "string", "name": "title", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "description", "type": "string" },
+      { "indexed": false, "internalType": "uint256", "name": "price", "type": "uint256" },
+      { "indexed": false, "internalType": "string[]", "name": "photosIPFSHashes", "type": "string[]" }
     ],
     "name": "ItemListed",
     "type": "event"
   },
   {
-    "inputs": [],
-    "name": "MAX_PHOTO_LIMIT",
-    "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }],
-    "stateMutability": "view",
-    "type": "function"
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "seller", "type": "address" },
+      { "indexed": false, "internalType": "string", "name": "title", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "description", "type": "string" },
+      { "indexed": false, "internalType": "uint256", "name": "price", "type": "uint256" },
+      { "indexed": false, "internalType": "string[]", "name": "photosIPFSHashes", "type": "string[]" }
+    ],
+    "name": "ItemUpdated",
+    "type": "event"
   },
+  { "inputs": [], "name": "MAX_PHOTO_LIMIT", "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" },
   {
     "inputs": [
       { "internalType": "address", "name": "sellerAddress", "type": "address" },
@@ -147,32 +91,29 @@
     "stateMutability": "payable",
     "type": "function"
   },
-  {
-    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
-    "name": "deleteItem",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getItemCount",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
+  { "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }], "name": "deleteItem", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  { "inputs": [], "name": "getItemCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" },
   {
     "inputs": [
       { "internalType": "string", "name": "_title", "type": "string" },
       { "internalType": "string", "name": "_description", "type": "string" },
       { "internalType": "uint256", "name": "_price", "type": "uint256" },
-      {
-        "internalType": "string[]",
-        "name": "photosIPFSHashes",
-        "type": "string[]"
-      }
+      { "internalType": "string[]", "name": "photosIPFSHashes", "type": "string[]" }
     ],
     "name": "listNewItem",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "string", "name": "_title", "type": "string" },
+      { "internalType": "string", "name": "_description", "type": "string" },
+      { "internalType": "uint256", "name": "_price", "type": "uint256" },
+      { "internalType": "string[]", "name": "photosIPFSHashes", "type": "string[]" }
+    ],
+    "name": "updateItem",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
