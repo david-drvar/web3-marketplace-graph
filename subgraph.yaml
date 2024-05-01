@@ -31,5 +31,5 @@ dataSources:
         - event: ItemListed(indexed uint256,indexed address,string,string,uint256,string[])
           handler: handleItemListed
         - event: ItemUpdated(indexed uint256,indexed address,string,string,uint256,string[])
-          handler: handleItemListed
+          handler: handleItemUpdated
       file: ./src/marketplace.ts

@@ -1,11 +1,12 @@
 import { Address, BigInt } from "@graphprotocol/graph-ts";
-import { ItemBought as ItemBoughtEvent, ItemDeleted as ItemDeletedEvent, ItemListed as ItemListedEvent, ItemUpdated, ItemUpdated as ItemUpdatedEvent } from "../generated/Marketplace/Marketplace";
+import { ItemBought as ItemBoughtEvent, ItemDeleted as ItemDeletedEvent, ItemListed as ItemListedEvent, ItemUpdated as ItemUpdatedEvent } from "../generated/Marketplace/Marketplace";
 import { Item } from "../generated/schema";
 import { log } from "@graphprotocol/graph-ts";
 
 export function handleItemBought(event: ItemBoughtEvent): void {
   let entity = Item.load(getIdFromEventParams(event.params.id, event.params.seller));
   if (!entity) {
+    log.error("Item with id {} doesn't exist. Error during handleItemBought.", [getIdFromEventParams(event.params.id, event.params.seller)]);
     return;
   }
 
@@ -20,6 +21,7 @@ export function handleItemBought(event: ItemBoughtEvent): void {
 export function handleItemDeleted(event: ItemDeletedEvent): void {
   let entity = Item.load(getIdFromEventParams(event.params.id, event.params.seller));
   if (!entity) {
+    log.error("Item with id {} doesn't exist. Error during handleItemDeleted.", [getIdFromEventParams(event.params.id, event.params.seller)]);
     return;
   }
 
@@ -35,7 +37,7 @@ export function handleItemListed(event: ItemListedEvent): void {
   // entity.id = event.params.id;
 
   let entity = Item.load(getIdFromEventParams(event.params.id, event.params.seller));
-  if (!entity) {
+  if (entity) {
     log.error("Item with id {} already exists.", [getIdFromEventParams(event.params.id, event.params.seller)]);
     return;
   }
