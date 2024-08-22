@@ -3,6 +3,9 @@
     "Marketplace": {
       "address": "0x96Aff46056d48aAF3eFFEff0eB3F592aEADc7E2E",
       "startBlock": 5815931
+    },
+    "Users": {
+      "address": "0xa1Eb34aA68B7D0d3991F51839Cbc6Af8a387F4D4"
     }
   }
 }

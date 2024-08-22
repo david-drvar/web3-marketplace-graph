@@ -17,3 +17,70 @@ type Item @entity {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type User @entity {
+  id: Bytes!
+  userAddress: Bytes! # address
+  username: String! # string
+  firstName: String! # string
+  lastName: String! # string
+  country: String! # string
+  description: String! # string
+  email: String! # string
+  avatarHash: String! # string
+  isModerator: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  isActive: Boolean!
+}
+
+# type UserDeleted @entity(immutable: true) {
+#   id: Bytes!
+#   userAddress: Bytes! # address
+#   username: String! # string
+#   blockNumber: BigInt!
+#   blockTimestamp: BigInt!
+#   transactionHash: Bytes!
+# }
+
+# type UserRegistered @entity(immutable: true) {
+#   id: Bytes!
+#   userAddress: Bytes! # address
+#   username: String! # string
+#   firstName: String! # string
+#   lastName: String! # string
+#   country: String! # string
+#   description: String! # string
+#   email: String! # string
+#   avatarHash: String! # string
+#   isModerator: Boolean! # bool
+#   blockNumber: BigInt!
+#   blockTimestamp: BigInt!
+#   transactionHash: Bytes!
+# }
+
+# type UserUpdated @entity(immutable: true) {
+#   id: Bytes!
+#   userAddress: Bytes! # address
+#   username: String! # string
+#   firstName: String! # string
+#   lastName: String! # string
+#   country: String! # string
+#   description: String! # string
+#   email: String! # string
+#   avatarHash: String! # string
+#   isModerator: Boolean! # bool
+#   blockNumber: BigInt!
+#   blockTimestamp: BigInt!
+#   transactionHash: Bytes!
+# }
+
+# todo
+# - zavrsi graph semu
+# - napravi usera sa fronta
+
+# sutra
+# - user profile sredi
+# - zavrsi escrow contract logiku
+# - kreni u escrow frontend implementaciju
