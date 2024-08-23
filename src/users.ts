@@ -1,11 +1,11 @@
 import { UserDeleted as UserDeletedEvent, UserRegistered as UserRegisteredEvent, UserUpdated as UserUpdatedEvent } from "../generated/Users/Users";
 import { User } from "../generated/schema";
-import { log } from "@graphprotocol/graph-ts";
+import { log, store } from "@graphprotocol/graph-ts";
 
 export function handleUserDeleted(event: UserDeletedEvent): void {
   let entity = User.load(event.params.userAddress);
   if (!entity) {
-    log.error("User with address {} doesn't exist. Error during handleUserDeleted.", [event.params.userAddress.toString()]);
+    log.error("User with address {} doesn't exist. Error during handleUserDeleted.", [event.params.userAddress.toHexString()]);
     return;
   }
 
@@ -13,13 +13,13 @@ export function handleUserDeleted(event: UserDeletedEvent): void {
 
   entity.save();
 
-  log.info("User with address {} deleted", [entity.userAddress.toString()]);
+  log.info("User with address {} deleted", [entity.userAddress.toHexString()]);
 }
 
 export function handleUserRegistered(event: UserRegisteredEvent): void {
   let entity = User.load(event.params.userAddress);
-  if (entity) {
-    log.error("User with address {} already exists. Error during handleUserRegistered.", [event.params.userAddress.toString()]);
+  if (entity && entity.isActive) {
+    log.error("User with address {} already exists. Error during handleUserRegistered.", [event.params.userAddress.toHexString()]);
     return;
   }
 
@@ -38,15 +38,17 @@ export function handleUserRegistered(event: UserRegisteredEvent): void {
   entity.blockTimestamp = event.block.timestamp;
   entity.transactionHash = event.transaction.hash;
 
+  entity.isActive = true;
+
   entity.save();
 
-  log.info("User with address {} saved", [entity.userAddress.toString()]);
+  log.info("User with address {} saved", [entity.userAddress.toHexString()]);
 }
 
 export function handleUserUpdated(event: UserUpdatedEvent): void {
   let entity = User.load(event.params.userAddress);
   if (!entity) {
-    log.error("User with address {} doesn't exist. Error during handleUserUpdated.", [event.params.userAddress.toString()]);
+    log.error("User with address {} doesn't exist. Error during handleUserUpdated.", [event.params.userAddress.toHexString()]);
     return;
   }
 
@@ -60,7 +62,9 @@ export function handleUserUpdated(event: UserUpdatedEvent): void {
   entity.avatarHash = event.params.avatarHash;
   entity.isModerator = event.params.isModerator;
 
+  entity.isActive = true;
+
   entity.save();
 
-  log.info("User with address {} updated", [entity.userAddress.toString()]);
+  log.info("User with address {} updated", [entity.userAddress.toHexString()]);
 }
