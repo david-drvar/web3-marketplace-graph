@@ -1,6 +1,23 @@
 [
   {
     "inputs": [
+      { "internalType": "address", "name": "initialOwner", "type": "address" },
+      {
+        "internalType": "address",
+        "name": "_escrowContractAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_usersContractAddress",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
       { "internalType": "address", "name": "sellerAddress", "type": "address" },
       { "internalType": "uint256", "name": "id", "type": "uint256" }
     ],
@@ -15,32 +32,71 @@
     "name": "ItemNotListed",
     "type": "error"
   },
-  { "inputs": [{ "internalType": "string", "name": "hash", "type": "string" }], "name": "NotIPFSHash", "type": "error" },
   {
     "inputs": [
-      { "internalType": "address", "name": "sellerAddress", "type": "address" },
-      { "internalType": "string", "name": "title", "type": "string" }
+      { "internalType": "address", "name": "moderator", "type": "address" }
     ],
-    "name": "PhotoLimitExceeded",
+    "name": "MustBeModerator",
     "type": "error"
   },
+  {
+    "inputs": [{ "internalType": "string", "name": "hash", "type": "string" }],
+    "name": "NotIPFSHash",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "owner", "type": "address" }
+    ],
+    "name": "OwnableInvalidOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "account", "type": "address" }
+    ],
+    "name": "OwnableUnauthorizedAccount",
+    "type": "error"
+  },
+  { "inputs": [], "name": "PhotoLimitExceeded", "type": "error" },
   { "inputs": [], "name": "PriceMustBeAboveZero", "type": "error" },
-  { "inputs": [{ "internalType": "address", "name": "sellerAddress", "type": "address" }], "name": "SellerCannotBuyItsItem", "type": "error" },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "sellerAddress", "type": "address" }
+    ],
+    "name": "SellerCannotBuyItsItem",
+    "type": "error"
+  },
   {
     "inputs": [
       { "internalType": "address", "name": "sellerAddress", "type": "address" },
       { "internalType": "uint256", "name": "id", "type": "uint256" },
       { "internalType": "uint256", "name": "value", "type": "uint256" }
     ],
-    "name": "SentValueNotEnough",
+    "name": "SentValueDifferentThanItemPrice",
     "type": "error"
   },
   {
     "anonymous": false,
     "inputs": [
-      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
-      { "indexed": true, "internalType": "address", "name": "seller", "type": "address" },
-      { "indexed": true, "internalType": "address", "name": "buyer", "type": "address" }
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "buyer",
+        "type": "address"
+      }
     ],
     "name": "ItemBought",
     "type": "event"
@@ -48,8 +104,18 @@
   {
     "anonymous": false,
     "inputs": [
-      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
-      { "indexed": true, "internalType": "address", "name": "seller", "type": "address" }
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      }
     ],
     "name": "ItemDeleted",
     "type": "event"
@@ -57,12 +123,42 @@
   {
     "anonymous": false,
     "inputs": [
-      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
-      { "indexed": true, "internalType": "address", "name": "seller", "type": "address" },
-      { "indexed": false, "internalType": "string", "name": "title", "type": "string" },
-      { "indexed": false, "internalType": "string", "name": "description", "type": "string" },
-      { "indexed": false, "internalType": "uint256", "name": "price", "type": "uint256" },
-      { "indexed": false, "internalType": "string[]", "name": "photosIPFSHashes", "type": "string[]" }
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string[]",
+        "name": "photosIPFSHashes",
+        "type": "string[]"
+      }
     ],
     "name": "ItemListed",
     "type": "event"
@@ -70,37 +166,167 @@
   {
     "anonymous": false,
     "inputs": [
-      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
-      { "indexed": true, "internalType": "address", "name": "seller", "type": "address" },
-      { "indexed": false, "internalType": "string", "name": "title", "type": "string" },
-      { "indexed": false, "internalType": "string", "name": "description", "type": "string" },
-      { "indexed": false, "internalType": "uint256", "name": "price", "type": "uint256" },
-      { "indexed": false, "internalType": "string[]", "name": "photosIPFSHashes", "type": "string[]" }
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string[]",
+        "name": "photosIPFSHashes",
+        "type": "string[]"
+      }
     ],
     "name": "ItemUpdated",
     "type": "event"
   },
-  { "inputs": [], "name": "MAX_PHOTO_LIMIT", "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_PHOTO_LIMIT",
+    "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
   {
     "inputs": [
       { "internalType": "address", "name": "sellerAddress", "type": "address" },
-      { "internalType": "uint256", "name": "id", "type": "uint256" }
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "address", "name": "_moderator", "type": "address" }
     ],
     "name": "buyItem",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
   },
-  { "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }], "name": "deleteItem", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
-  { "inputs": [], "name": "getItemCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "name": "deleteItem",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "escrowContract",
+    "outputs": [
+      { "internalType": "contract IEscrow", "name": "", "type": "address" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getItemCount",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
   {
     "inputs": [
       { "internalType": "string", "name": "_title", "type": "string" },
       { "internalType": "string", "name": "_description", "type": "string" },
       { "internalType": "uint256", "name": "_price", "type": "uint256" },
-      { "internalType": "string[]", "name": "photosIPFSHashes", "type": "string[]" }
+      {
+        "internalType": "string[]",
+        "name": "photosIPFSHashes",
+        "type": "string[]"
+      }
     ],
     "name": "listNewItem",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_escrowContractAddress",
+        "type": "address"
+      }
+    ],
+    "name": "setEscrowContractAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_usersContractAddress",
+        "type": "address"
+      }
+    ],
+    "name": "setUsersContractAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "newOwner", "type": "address" }
+    ],
+    "name": "transferOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -111,11 +337,24 @@
       { "internalType": "string", "name": "_title", "type": "string" },
       { "internalType": "string", "name": "_description", "type": "string" },
       { "internalType": "uint256", "name": "_price", "type": "uint256" },
-      { "internalType": "string[]", "name": "photosIPFSHashes", "type": "string[]" }
+      {
+        "internalType": "string[]",
+        "name": "photosIPFSHashes",
+        "type": "string[]"
+      }
     ],
     "name": "updateItem",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "usersContract",
+    "outputs": [
+      { "internalType": "contract IUsers", "name": "", "type": "address" }
+    ],
+    "stateMutability": "view",
     "type": "function"
   }
 ]

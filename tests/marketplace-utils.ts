@@ -3,7 +3,9 @@ import { ethereum, BigInt, Address } from "@graphprotocol/graph-ts"
 import {
   ItemBought,
   ItemDeleted,
-  ItemListed
+  ItemListed,
+  ItemUpdated,
+  OwnershipTransferred
 } from "../generated/Marketplace/Marketplace"
 
 export function createItemBoughtEvent(
@@ -51,7 +53,8 @@ export function createItemListedEvent(
   seller: Address,
   title: string,
   description: string,
-  price: BigInt
+  price: BigInt,
+  photosIPFSHashes: Array<string>
 ): ItemListed {
   let itemListedEvent = changetype<ItemListed>(newMockEvent())
 
@@ -75,6 +78,75 @@ export function createItemListedEvent(
   itemListedEvent.parameters.push(
     new ethereum.EventParam("price", ethereum.Value.fromUnsignedBigInt(price))
   )
+  itemListedEvent.parameters.push(
+    new ethereum.EventParam(
+      "photosIPFSHashes",
+      ethereum.Value.fromStringArray(photosIPFSHashes)
+    )
+  )
 
   return itemListedEvent
+}
+
+export function createItemUpdatedEvent(
+  id: BigInt,
+  seller: Address,
+  title: string,
+  description: string,
+  price: BigInt,
+  photosIPFSHashes: Array<string>
+): ItemUpdated {
+  let itemUpdatedEvent = changetype<ItemUpdated>(newMockEvent())
+
+  itemUpdatedEvent.parameters = new Array()
+
+  itemUpdatedEvent.parameters.push(
+    new ethereum.EventParam("id", ethereum.Value.fromUnsignedBigInt(id))
+  )
+  itemUpdatedEvent.parameters.push(
+    new ethereum.EventParam("seller", ethereum.Value.fromAddress(seller))
+  )
+  itemUpdatedEvent.parameters.push(
+    new ethereum.EventParam("title", ethereum.Value.fromString(title))
+  )
+  itemUpdatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "description",
+      ethereum.Value.fromString(description)
+    )
+  )
+  itemUpdatedEvent.parameters.push(
+    new ethereum.EventParam("price", ethereum.Value.fromUnsignedBigInt(price))
+  )
+  itemUpdatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "photosIPFSHashes",
+      ethereum.Value.fromStringArray(photosIPFSHashes)
+    )
+  )
+
+  return itemUpdatedEvent
+}
+
+export function createOwnershipTransferredEvent(
+  previousOwner: Address,
+  newOwner: Address
+): OwnershipTransferred {
+  let ownershipTransferredEvent = changetype<OwnershipTransferred>(
+    newMockEvent()
+  )
+
+  ownershipTransferredEvent.parameters = new Array()
+
+  ownershipTransferredEvent.parameters.push(
+    new ethereum.EventParam(
+      "previousOwner",
+      ethereum.Value.fromAddress(previousOwner)
+    )
+  )
+  ownershipTransferredEvent.parameters.push(
+    new ethereum.EventParam("newOwner", ethereum.Value.fromAddress(newOwner))
+  )
+
+  return ownershipTransferredEvent
 }
