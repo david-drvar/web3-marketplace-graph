@@ -1,4 +1,4 @@
-import { UserDeleted as UserDeletedEvent, UserRegistered as UserRegisteredEvent, UserUpdated as UserUpdatedEvent } from "../generated/Users/Users";
+import { OwnershipTransferred as OwnershipTransferredEvent, UserDeleted as UserDeletedEvent, UserRegistered as UserRegisteredEvent, UserUpdated as UserUpdatedEvent } from "../generated/Users/Users";
 import { User } from "../generated/schema";
 import { log, store } from "@graphprotocol/graph-ts";
 
@@ -33,6 +33,7 @@ export function handleUserRegistered(event: UserRegisteredEvent): void {
   entity.email = event.params.email;
   entity.avatarHash = event.params.avatarHash;
   entity.isModerator = event.params.isModerator;
+  entity.moderatorFee = event.params.moderatorFee;
 
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
@@ -61,6 +62,7 @@ export function handleUserUpdated(event: UserUpdatedEvent): void {
   entity.email = event.params.email;
   entity.avatarHash = event.params.avatarHash;
   entity.isModerator = event.params.isModerator;
+  entity.moderatorFee = event.params.moderatorFee;
 
   entity.isActive = true;
 

@@ -7,22 +7,27 @@ import {
   afterAll
 } from "matchstick-as/assembly/index"
 import { Address } from "@graphprotocol/graph-ts"
-import { UserDeleted } from "../generated/schema"
-import { UserDeleted as UserDeletedEvent } from "../generated/Users/Users"
-import { handleUserDeleted } from "../src/users"
-import { createUserDeletedEvent } from "./users-utils"
+import { OwnershipTransferred } from "../generated/schema"
+import { OwnershipTransferred as OwnershipTransferredEvent } from "../generated/Users/Users"
+import { handleOwnershipTransferred } from "../src/users"
+import { createOwnershipTransferredEvent } from "./users-utils"
 
 // Tests structure (matchstick-as >=0.5.0)
 // https://thegraph.com/docs/en/developer/matchstick/#tests-structure-0-5-0
 
 describe("Describe entity assertions", () => {
   beforeAll(() => {
-    let userAddress = Address.fromString(
+    let previousOwner = Address.fromString(
       "0x0000000000000000000000000000000000000001"
     )
-    let username = "Example string value"
-    let newUserDeletedEvent = createUserDeletedEvent(userAddress, username)
-    handleUserDeleted(newUserDeletedEvent)
+    let newOwner = Address.fromString(
+      "0x0000000000000000000000000000000000000001"
+    )
+    let newOwnershipTransferredEvent = createOwnershipTransferredEvent(
+      previousOwner,
+      newOwner
+    )
+    handleOwnershipTransferred(newOwnershipTransferredEvent)
   })
 
   afterAll(() => {
@@ -32,21 +37,21 @@ describe("Describe entity assertions", () => {
   // For more test scenarios, see:
   // https://thegraph.com/docs/en/developer/matchstick/#write-a-unit-test
 
-  test("UserDeleted created and stored", () => {
-    assert.entityCount("UserDeleted", 1)
+  test("OwnershipTransferred created and stored", () => {
+    assert.entityCount("OwnershipTransferred", 1)
 
     // 0xa16081f360e3847006db660bae1c6d1b2e17ec2a is the default address used in newMockEvent() function
     assert.fieldEquals(
-      "UserDeleted",
+      "OwnershipTransferred",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
-      "userAddress",
+      "previousOwner",
       "0x0000000000000000000000000000000000000001"
     )
     assert.fieldEquals(
-      "UserDeleted",
+      "OwnershipTransferred",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
-      "username",
-      "Example string value"
+      "newOwner",
+      "0x0000000000000000000000000000000000000001"
     )
 
     // More assert options:
