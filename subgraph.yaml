@@ -61,3 +61,32 @@ dataSources:
             string,string,string,string,string,string,string,bool,uint8)
           handler: handleUserUpdated
       file: ./src/users.ts
+  - kind: ethereum
+    name: Escrow
+    network: sepolia
+    source:
+      address: "0x7d3Be8850C5B1a43aAf641eDB805434512c57eec"
+      abi: Escrow
+      startBlock: 6570518
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - TransactionApproved
+        - TransactionCompleted
+        - TransactionCreated
+        - TransactionDisputed
+      abis:
+        - name: Escrow
+          file: ./abis/Escrow.json
+      eventHandlers:
+        - event: TransactionApproved(uint256,address)
+          handler: handleTransactionApproved
+        - event: TransactionCompleted(uint256)
+          handler: handleTransactionCompleted
+        - event: TransactionCreated(uint256,address,address,uint256)
+          handler: handleTransactionCreated
+        - event: TransactionDisputed(uint256)
+          handler: handleTransactionDisputed
+      file: ./src/escrow.ts

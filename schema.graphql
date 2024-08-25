@@ -4,6 +4,12 @@ enum ItemStatus {
   Deleted
 }
 
+enum TransactionStatus {
+  FUNDED
+  SHIPPED
+  RECEIVED
+}
+
 type Item @entity {
   id: String!
   buyer: Bytes! # Address 0x0000... if no one has bought it yet
@@ -34,4 +40,22 @@ type User @entity {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
   isActive: Boolean!
+}
+
+type Transaction @entity(immutable: true) {
+  id: String!
+  itemId: BigInt! # uint256
+  buyer: Bytes! # address
+  seller: Bytes! # address
+  price: BigInt! # uint256
+  transactionStatus: TransactionStatus!
+  buyerApproved: Boolean!
+  sellerApproved: Boolean!
+  moderatorApproved: Boolean!
+  disputed: Boolean!
+  isCompleted: Boolean!
+  creationTime: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
 }
