@@ -69,7 +69,16 @@ export function createTransactionCreatedEvent(
   itemId: BigInt,
   buyer: Address,
   seller: Address,
-  price: BigInt
+  moderator: Address,
+  price: BigInt,
+  transactionStatus: i32,
+  buyerApproved: boolean,
+  sellerApproved: boolean,
+  moderatorApproved: boolean,
+  disputed: boolean,
+  disputedBy: Address,
+  isCompleted: boolean,
+  creationTime: BigInt
 ): TransactionCreated {
   let transactionCreatedEvent = changetype<TransactionCreated>(newMockEvent())
 
@@ -85,14 +94,63 @@ export function createTransactionCreatedEvent(
     new ethereum.EventParam("seller", ethereum.Value.fromAddress(seller))
   )
   transactionCreatedEvent.parameters.push(
+    new ethereum.EventParam("moderator", ethereum.Value.fromAddress(moderator))
+  )
+  transactionCreatedEvent.parameters.push(
     new ethereum.EventParam("price", ethereum.Value.fromUnsignedBigInt(price))
+  )
+  transactionCreatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "transactionStatus",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(transactionStatus))
+    )
+  )
+  transactionCreatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "buyerApproved",
+      ethereum.Value.fromBoolean(buyerApproved)
+    )
+  )
+  transactionCreatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "sellerApproved",
+      ethereum.Value.fromBoolean(sellerApproved)
+    )
+  )
+  transactionCreatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "moderatorApproved",
+      ethereum.Value.fromBoolean(moderatorApproved)
+    )
+  )
+  transactionCreatedEvent.parameters.push(
+    new ethereum.EventParam("disputed", ethereum.Value.fromBoolean(disputed))
+  )
+  transactionCreatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "disputedBy",
+      ethereum.Value.fromAddress(disputedBy)
+    )
+  )
+  transactionCreatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "isCompleted",
+      ethereum.Value.fromBoolean(isCompleted)
+    )
+  )
+  transactionCreatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "creationTime",
+      ethereum.Value.fromUnsignedBigInt(creationTime)
+    )
   )
 
   return transactionCreatedEvent
 }
 
 export function createTransactionDisputedEvent(
-  itemId: BigInt
+  itemId: BigInt,
+  disputer: Address
 ): TransactionDisputed {
   let transactionDisputedEvent = changetype<TransactionDisputed>(newMockEvent())
 
@@ -100,6 +158,9 @@ export function createTransactionDisputedEvent(
 
   transactionDisputedEvent.parameters.push(
     new ethereum.EventParam("itemId", ethereum.Value.fromUnsignedBigInt(itemId))
+  )
+  transactionDisputedEvent.parameters.push(
+    new ethereum.EventParam("disputer", ethereum.Value.fromAddress(disputer))
   )
 
   return transactionDisputedEvent

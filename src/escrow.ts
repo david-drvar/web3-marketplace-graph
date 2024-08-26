@@ -52,14 +52,16 @@ export function handleTransactionCreated(event: TransactionCreatedEvent): void {
   entity.itemId = event.params.itemId;
   entity.buyer = event.params.buyer;
   entity.seller = event.params.seller;
+  entity.moderator = event.params.moderator;
   entity.price = event.params.price;
   entity.transactionStatus = "FUNDED";
-  entity.buyerApproved = false;
-  entity.sellerApproved = false;
-  entity.moderatorApproved = false;
-  entity.disputed = false;
-  entity.isCompleted = false;
-  entity.creationTime = event.block.timestamp;
+  entity.buyerApproved = event.params.buyerApproved;
+  entity.sellerApproved = event.params.sellerApproved;
+  entity.moderatorApproved = event.params.moderatorApproved;
+  entity.disputed = event.params.disputed;
+  entity.disputedBy = event.params.disputedBy;
+  entity.isCompleted = event.params.isCompleted;
+  entity.creationTime = event.params.creationTime;
 
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
@@ -78,6 +80,7 @@ export function handleTransactionDisputed(event: TransactionDisputedEvent): void
   }
 
   entity.disputed = true;
+  entity.disputedBy = event.params.disputer;
 
   entity.save();
 

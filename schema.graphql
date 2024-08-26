@@ -47,12 +47,14 @@ type Transaction @entity(immutable: true) {
   itemId: BigInt! # uint256
   buyer: Bytes! # address
   seller: Bytes! # address
+  moderator: Bytes! # address
   price: BigInt! # uint256
   transactionStatus: TransactionStatus!
   buyerApproved: Boolean!
   sellerApproved: Boolean!
   moderatorApproved: Boolean!
   disputed: Boolean!
+  disputedBy: Bytes! # address
   isCompleted: Boolean!
   creationTime: BigInt!
   blockNumber: BigInt!
