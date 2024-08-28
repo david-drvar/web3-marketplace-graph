@@ -42,7 +42,7 @@ type User @entity {
   isActive: Boolean!
 }
 
-type Transaction @entity(immutable: true) {
+type Transaction @entity {
   id: String!
   itemId: BigInt! # uint256
   buyer: Bytes! # address
