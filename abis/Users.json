@@ -8,6 +8,13 @@
   },
   {
     "inputs": [
+      { "internalType": "uint8", "name": "moderatorFee", "type": "uint8" }
+    ],
+    "name": "ModeratorFeeLimitsNotRespected",
+    "type": "error"
+  },
+  {
+    "inputs": [
       { "internalType": "address", "name": "owner", "type": "address" }
     ],
     "name": "OwnableInvalidOwner",
@@ -214,6 +221,13 @@
     "type": "event"
   },
   {
+    "inputs": [],
+    "name": "MAX_MODERATOR_FEE",
+    "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       { "internalType": "string", "name": "_username", "type": "string" },
       { "internalType": "string", "name": "_firstName", "type": "string" },
@@ -259,11 +273,7 @@
           { "internalType": "string", "name": "avatarHash", "type": "string" },
           { "internalType": "bool", "name": "isModerator", "type": "bool" },
           { "internalType": "bool", "name": "exists", "type": "bool" },
-          {
-            "internalType": "uint256",
-            "name": "moderatorFee",
-            "type": "uint256"
-          }
+          { "internalType": "uint8", "name": "moderatorFee", "type": "uint8" }
         ],
         "internalType": "struct Users.UserProfile",
         "name": "",
@@ -345,7 +355,7 @@
       { "internalType": "string", "name": "avatarHash", "type": "string" },
       { "internalType": "bool", "name": "isModerator", "type": "bool" },
       { "internalType": "bool", "name": "exists", "type": "bool" },
-      { "internalType": "uint256", "name": "moderatorFee", "type": "uint256" }
+      { "internalType": "uint8", "name": "moderatorFee", "type": "uint8" }
     ],
     "stateMutability": "view",
     "type": "function"
