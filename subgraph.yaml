@@ -8,18 +8,18 @@ dataSources:
     name: Marketplace
     network: sepolia
     source:
-      address: "0xb9E1E88E355F66D5d90E7d55152d4032Ed097b9f"
+      address: "0x9E9FCb12fF7F5fEe9e4FD7e657077150b64f6fF0"
       abi: Marketplace
-      startBlock: 6570513
+      startBlock: 6596090
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - MarketplaceItemBought
-        - MarketplaceItemDeleted
-        - MarketplaceItemListed
-        - MarketplaceItemUpdated
+        - ItemBought
+        - ItemDeleted
+        - ItemListed
+        - ItemUpdated
       abis:
         - name: Marketplace
           file: ./abis/Marketplace.json
