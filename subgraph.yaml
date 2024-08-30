@@ -65,18 +65,19 @@ dataSources:
     name: Escrow
     network: sepolia
     source:
-      address: "0x3b3E50A51973108631AC5a9916Bb5e2494B48817"
+      address: "0x895F0cA48Eb1891aF4563990295aa12feecFC56e"
       abi: Escrow
-      startBlock: 6575591
+      startBlock: 6599996
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - EscrowTransactionApproved
-        - EscrowTransactionCompleted
-        - EscrowTransactionCreated
-        - EscrowTransactionDisputed
+        - TransactionApproved
+        - TransactionCompleted
+        - TransactionCompletedByModerator
+        - TransactionCreated
+        - TransactionDisputed
       abis:
         - name: Escrow
           file: ./abis/Escrow.json
@@ -85,8 +86,10 @@ dataSources:
           handler: handleTransactionApproved
         - event: TransactionCompleted(indexed uint256)
           handler: handleTransactionCompleted
+        - event: TransactionCompletedByModerator(indexed uint256,uint8,uint8)
+          handler: handleTransactionCompletedByModerator
         - event: TransactionCreated(indexed uint256,indexed address,indexed
-            address,address,uint256,uint8,bool,bool,bool,bool,address,bool,uint256)
+            address,address,uint256,uint8,uint256)
           handler: handleTransactionCreated
         - event: TransactionDisputed(indexed uint256,address)
           handler: handleTransactionDisputed

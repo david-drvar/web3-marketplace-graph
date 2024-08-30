@@ -4,6 +4,7 @@ import {
   OwnershipTransferred,
   TransactionApproved,
   TransactionCompleted,
+  TransactionCompletedByModerator,
   TransactionCreated,
   TransactionDisputed
 } from "../generated/Escrow/Escrow"
@@ -65,19 +66,42 @@ export function createTransactionCompletedEvent(
   return transactionCompletedEvent
 }
 
+export function createTransactionCompletedByModeratorEvent(
+  itemId: BigInt,
+  buyerPercentage: i32,
+  sellerPercentage: i32
+): TransactionCompletedByModerator {
+  let transactionCompletedByModeratorEvent =
+    changetype<TransactionCompletedByModerator>(newMockEvent())
+
+  transactionCompletedByModeratorEvent.parameters = new Array()
+
+  transactionCompletedByModeratorEvent.parameters.push(
+    new ethereum.EventParam("itemId", ethereum.Value.fromUnsignedBigInt(itemId))
+  )
+  transactionCompletedByModeratorEvent.parameters.push(
+    new ethereum.EventParam(
+      "buyerPercentage",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(buyerPercentage))
+    )
+  )
+  transactionCompletedByModeratorEvent.parameters.push(
+    new ethereum.EventParam(
+      "sellerPercentage",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(sellerPercentage))
+    )
+  )
+
+  return transactionCompletedByModeratorEvent
+}
+
 export function createTransactionCreatedEvent(
   itemId: BigInt,
   buyer: Address,
   seller: Address,
   moderator: Address,
   price: BigInt,
-  transactionStatus: i32,
-  buyerApproved: boolean,
-  sellerApproved: boolean,
-  moderatorApproved: boolean,
-  disputed: boolean,
-  disputedBy: Address,
-  isCompleted: boolean,
+  moderatorFee: i32,
   creationTime: BigInt
 ): TransactionCreated {
   let transactionCreatedEvent = changetype<TransactionCreated>(newMockEvent())
@@ -101,41 +125,8 @@ export function createTransactionCreatedEvent(
   )
   transactionCreatedEvent.parameters.push(
     new ethereum.EventParam(
-      "transactionStatus",
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(transactionStatus))
-    )
-  )
-  transactionCreatedEvent.parameters.push(
-    new ethereum.EventParam(
-      "buyerApproved",
-      ethereum.Value.fromBoolean(buyerApproved)
-    )
-  )
-  transactionCreatedEvent.parameters.push(
-    new ethereum.EventParam(
-      "sellerApproved",
-      ethereum.Value.fromBoolean(sellerApproved)
-    )
-  )
-  transactionCreatedEvent.parameters.push(
-    new ethereum.EventParam(
-      "moderatorApproved",
-      ethereum.Value.fromBoolean(moderatorApproved)
-    )
-  )
-  transactionCreatedEvent.parameters.push(
-    new ethereum.EventParam("disputed", ethereum.Value.fromBoolean(disputed))
-  )
-  transactionCreatedEvent.parameters.push(
-    new ethereum.EventParam(
-      "disputedBy",
-      ethereum.Value.fromAddress(disputedBy)
-    )
-  )
-  transactionCreatedEvent.parameters.push(
-    new ethereum.EventParam(
-      "isCompleted",
-      ethereum.Value.fromBoolean(isCompleted)
+      "moderatorFee",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(moderatorFee))
     )
   )
   transactionCreatedEvent.parameters.push(

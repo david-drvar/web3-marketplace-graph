@@ -6,7 +6,12 @@
     "stateMutability": "nonpayable",
     "type": "constructor"
   },
-  { "inputs": [], "name": "OnlyMarketplaceContractCallCall", "type": "error" },
+  { "inputs": [], "name": "MustBeDisputed", "type": "error" },
+  { "inputs": [], "name": "OnlyBuyer", "type": "error" },
+  { "inputs": [], "name": "OnlyBuyerOrSeller", "type": "error" },
+  { "inputs": [], "name": "OnlyMarketplaceContractCanCall", "type": "error" },
+  { "inputs": [], "name": "OnlyModerator", "type": "error" },
+  { "inputs": [], "name": "OnlySeller", "type": "error" },
   {
     "inputs": [
       { "internalType": "address", "name": "owner", "type": "address" }
@@ -21,11 +26,13 @@
     "name": "OwnableUnauthorizedAccount",
     "type": "error"
   },
+  { "inputs": [], "name": "TxCantBeCompleted", "type": "error" },
   {
     "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
     "name": "TxExists",
     "type": "error"
   },
+  { "inputs": [], "name": "ValueDistributionNotCorrect", "type": "error" },
   {
     "anonymous": false,
     "inputs": [
@@ -87,6 +94,31 @@
         "type": "uint256"
       },
       {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "buyerPercentage",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "sellerPercentage",
+        "type": "uint8"
+      }
+    ],
+    "name": "TransactionCompletedByModerator",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "itemId",
+        "type": "uint256"
+      },
+      {
         "indexed": true,
         "internalType": "address",
         "name": "buyer",
@@ -112,45 +144,9 @@
       },
       {
         "indexed": false,
-        "internalType": "enum Escrow.TransactionStatus",
-        "name": "transactionStatus",
+        "internalType": "uint8",
+        "name": "moderatorFee",
         "type": "uint8"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "buyerApproved",
-        "type": "bool"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "sellerApproved",
-        "type": "bool"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "moderatorApproved",
-        "type": "bool"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "disputed",
-        "type": "bool"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "disputedBy",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "isCompleted",
-        "type": "bool"
       },
       {
         "indexed": false,
@@ -194,15 +190,6 @@
     "inputs": [
       { "internalType": "uint256", "name": "_itemId", "type": "uint256" }
     ],
-    "name": "approveByModerator",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "_itemId", "type": "uint256" }
-    ],
     "name": "approveBySeller",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -214,9 +201,21 @@
       { "internalType": "address", "name": "_seller", "type": "address" },
       { "internalType": "address", "name": "_buyer", "type": "address" },
       { "internalType": "address", "name": "_moderator", "type": "address" },
-      { "internalType": "uint256", "name": "_price", "type": "uint256" }
+      { "internalType": "uint256", "name": "_price", "type": "uint256" },
+      { "internalType": "uint8", "name": "_moderatorFee", "type": "uint8" }
     ],
     "name": "createTransaction",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_itemId", "type": "uint256" },
+      { "internalType": "uint8", "name": "percentageSeller", "type": "uint8" },
+      { "internalType": "uint8", "name": "percentageBuyer", "type": "uint8" }
+    ],
+    "name": "finalizeTransactionByModerator",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"

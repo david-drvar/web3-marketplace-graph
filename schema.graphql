@@ -4,12 +4,6 @@ enum ItemStatus {
   Deleted
 }
 
-enum TransactionStatus {
-  FUNDED
-  SHIPPED
-  RECEIVED
-}
-
 type Item @entity {
   id: String!
   buyer: Bytes! # Address 0x0000... if no one has bought it yet
@@ -49,15 +43,17 @@ type Transaction @entity {
   seller: Bytes! # address
   moderator: Bytes! # address
   price: BigInt! # uint256
-  transactionStatus: TransactionStatus!
+  moderatorFee: Int! # uint256
   buyerApproved: Boolean!
   sellerApproved: Boolean!
-  moderatorApproved: Boolean!
   disputed: Boolean!
-  disputedBy: Bytes! # address
+  disputedBySeller: Boolean! # address
+  disputedByBuyer: Boolean! # address
   isCompleted: Boolean!
   creationTime: BigInt!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
+  buyerPercentage: Int! # uint8
+  sellerPercentage: Int! # uint8
 }
