@@ -37,17 +37,17 @@ dataSources:
     name: Users
     network: sepolia
     source:
-      address: "0x3B42e0f2c22bF09115Ec8cbe43C85A6E9a30169E"
+      address: "0xdfe017Cc68e9d83c431C911411055422A6253Bef"
       abi: Users
-      startBlock: 6596098
+      startBlock: 6600009
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - UserDeleted
-        - UserRegistered
-        - UserUpdated
+        - UsersUserDeleted
+        - UsersUserRegistered
+        - UsersUserUpdated
       abis:
         - name: Users
           file: ./abis/Users.json
