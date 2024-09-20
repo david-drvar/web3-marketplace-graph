@@ -49,6 +49,17 @@ export function handleItemListed(event: ItemListedEvent): void {
   entity.photosIPFSHashes = event.params.photosIPFSHashes;
   entity.itemStatus = "Listed";
 
+  if (event.params.condition == 0) entity.condition = "NEW";
+  if (event.params.condition == 1) entity.condition = "LIKE_NEW";
+  if (event.params.condition == 2) entity.condition = "EXCELLENT";
+  if (event.params.condition == 3) entity.condition = "GOOD";
+  if (event.params.condition == 4) entity.condition = "DAMAGED";
+
+  entity.category = event.params.category;
+  entity.subcategory = event.params.subcategory;
+  entity.country = event.params.country;
+  entity.isGift = event.params.isGift;
+
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
   entity.transactionHash = event.transaction.hash;
@@ -69,6 +80,18 @@ export function handleItemUpdated(event: ItemUpdatedEvent): void {
   entity.description = event.params.description;
   entity.price = event.params.price;
   entity.photosIPFSHashes = event.params.photosIPFSHashes;
+
+  if (event.params.condition == 0) entity.condition = "NEW";
+  if (event.params.condition == 1) entity.condition = "LIKE_NEW";
+  if (event.params.condition == 2) entity.condition = "EXCELLENT";
+  if (event.params.condition == 3) entity.condition = "GOOD";
+  if (event.params.condition == 4) entity.condition = "DAMAGED";
+
+  entity.category = event.params.category;
+  entity.subcategory = event.params.subcategory;
+  entity.country = event.params.country;
+  entity.isGift = event.params.isGift;
+
   entity.save();
 
   log.info("Item with id {} updated", [entity.id]);

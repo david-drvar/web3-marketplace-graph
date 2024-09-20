@@ -30,11 +30,13 @@
     "name": "MustBeModerator",
     "type": "error"
   },
+  { "inputs": [], "name": "MustNotBeGift", "type": "error" },
   {
     "inputs": [{ "internalType": "string", "name": "hash", "type": "string" }],
     "name": "NotIPFSHash",
     "type": "error"
   },
+  { "inputs": [], "name": "NotValidCategoryAndSubcategory", "type": "error" },
   {
     "inputs": [
       { "internalType": "address", "name": "owner", "type": "address" }
@@ -149,6 +151,36 @@
         "internalType": "string[]",
         "name": "photosIPFSHashes",
         "type": "string[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum Marketplace.Condition",
+        "name": "condition",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "subcategory",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "country",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isGift",
+        "type": "bool"
       }
     ],
     "name": "ItemListed",
@@ -192,6 +224,36 @@
         "internalType": "string[]",
         "name": "photosIPFSHashes",
         "type": "string[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum Marketplace.Condition",
+        "name": "condition",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "subcategory",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "country",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isGift",
+        "type": "bool"
       }
     ],
     "name": "ItemUpdated",
@@ -235,6 +297,16 @@
     "type": "function"
   },
   {
+    "inputs": [
+      { "internalType": "address", "name": "sellerAddress", "type": "address" },
+      { "internalType": "uint256", "name": "id", "type": "uint256" }
+    ],
+    "name": "buyItemWithoutModerator",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
     "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
     "name": "deleteItem",
     "outputs": [],
@@ -266,7 +338,16 @@
         "internalType": "string[]",
         "name": "photosIPFSHashes",
         "type": "string[]"
-      }
+      },
+      {
+        "internalType": "enum Marketplace.Condition",
+        "name": "_condition",
+        "type": "uint8"
+      },
+      { "internalType": "string", "name": "_category", "type": "string" },
+      { "internalType": "string", "name": "_subcategory", "type": "string" },
+      { "internalType": "string", "name": "_country", "type": "string" },
+      { "internalType": "bool", "name": "_isGift", "type": "bool" }
     ],
     "name": "listNewItem",
     "outputs": [],
@@ -332,7 +413,16 @@
         "internalType": "string[]",
         "name": "photosIPFSHashes",
         "type": "string[]"
-      }
+      },
+      {
+        "internalType": "enum Marketplace.Condition",
+        "name": "_condition",
+        "type": "uint8"
+      },
+      { "internalType": "string", "name": "_category", "type": "string" },
+      { "internalType": "string", "name": "_subcategory", "type": "string" },
+      { "internalType": "string", "name": "_country", "type": "string" },
+      { "internalType": "bool", "name": "_isGift", "type": "bool" }
     ],
     "name": "updateItem",
     "outputs": [],

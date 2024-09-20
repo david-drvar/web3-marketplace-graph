@@ -4,6 +4,14 @@ enum ItemStatus {
   Deleted
 }
 
+enum Condition {
+  NEW
+  LIKE_NEW
+  EXCELLENT
+  GOOD
+  DAMAGED
+}
+
 type Item @entity {
   id: String!
   buyer: Bytes! # Address 0x0000... if no one has bought it yet
@@ -13,6 +21,11 @@ type Item @entity {
   price: BigInt! # uint256
   photosIPFSHashes: [String!]! # array of strings that are photo hashes
   itemStatus: ItemStatus!
+  condition: Condition! # uint8
+  category: String! # string
+  subcategory: String! # string
+  country: String! # string
+  isGift: Boolean! # bool
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!

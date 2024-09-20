@@ -54,7 +54,12 @@ export function createItemListedEvent(
   title: string,
   description: string,
   price: BigInt,
-  photosIPFSHashes: Array<string>
+  photosIPFSHashes: Array<string>,
+  condition: i32,
+  category: string,
+  subcategory: string,
+  country: string,
+  isGift: boolean
 ): ItemListed {
   let itemListedEvent = changetype<ItemListed>(newMockEvent())
 
@@ -84,6 +89,27 @@ export function createItemListedEvent(
       ethereum.Value.fromStringArray(photosIPFSHashes)
     )
   )
+  itemListedEvent.parameters.push(
+    new ethereum.EventParam(
+      "condition",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(condition))
+    )
+  )
+  itemListedEvent.parameters.push(
+    new ethereum.EventParam("category", ethereum.Value.fromString(category))
+  )
+  itemListedEvent.parameters.push(
+    new ethereum.EventParam(
+      "subcategory",
+      ethereum.Value.fromString(subcategory)
+    )
+  )
+  itemListedEvent.parameters.push(
+    new ethereum.EventParam("country", ethereum.Value.fromString(country))
+  )
+  itemListedEvent.parameters.push(
+    new ethereum.EventParam("isGift", ethereum.Value.fromBoolean(isGift))
+  )
 
   return itemListedEvent
 }
@@ -94,7 +120,12 @@ export function createItemUpdatedEvent(
   title: string,
   description: string,
   price: BigInt,
-  photosIPFSHashes: Array<string>
+  photosIPFSHashes: Array<string>,
+  condition: i32,
+  category: string,
+  subcategory: string,
+  country: string,
+  isGift: boolean
 ): ItemUpdated {
   let itemUpdatedEvent = changetype<ItemUpdated>(newMockEvent())
 
@@ -123,6 +154,27 @@ export function createItemUpdatedEvent(
       "photosIPFSHashes",
       ethereum.Value.fromStringArray(photosIPFSHashes)
     )
+  )
+  itemUpdatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "condition",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(condition))
+    )
+  )
+  itemUpdatedEvent.parameters.push(
+    new ethereum.EventParam("category", ethereum.Value.fromString(category))
+  )
+  itemUpdatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "subcategory",
+      ethereum.Value.fromString(subcategory)
+    )
+  )
+  itemUpdatedEvent.parameters.push(
+    new ethereum.EventParam("country", ethereum.Value.fromString(country))
+  )
+  itemUpdatedEvent.parameters.push(
+    new ethereum.EventParam("isGift", ethereum.Value.fromBoolean(isGift))
   )
 
   return itemUpdatedEvent
