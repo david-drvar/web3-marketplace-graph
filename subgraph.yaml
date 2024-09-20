@@ -37,28 +37,28 @@ dataSources:
     name: Users
     network: sepolia
     source:
-      address: "0xdfe017Cc68e9d83c431C911411055422A6253Bef"
+      address: "0x5a1eA8d2AF5313EFF0CD08a89a9b7053665CE5Fc"
       abi: Users
-      startBlock: 6600009
+      startBlock: 6727621
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - UsersUserDeleted
-        - UsersUserRegistered
-        - UsersUserUpdated
+        - UserDeleted
+        - UserRegistered
+        - UserUpdated
       abis:
         - name: Users
           file: ./abis/Users.json
       eventHandlers:
-        - event: UserDeleted(indexed address,indexed string)
+        - event: UserDeleted(indexed address,string)
           handler: handleUserDeleted
-        - event: UserRegistered(indexed address,indexed
-            string,string,string,string,string,string,string,bool,uint8)
+        - event: UserRegistered(indexed
+            address,string,string,string,string,string,string,string,bool,uint8)
           handler: handleUserRegistered
-        - event: UserUpdated(indexed address,indexed
-            string,string,string,string,string,string,string,bool,uint8)
+        - event: UserUpdated(indexed
+            address,string,string,string,string,string,string,string,bool,uint8)
           handler: handleUserUpdated
       file: ./src/users.ts
   - kind: ethereum

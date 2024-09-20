@@ -25,7 +25,7 @@ export function handleUserRegistered(event: UserRegisteredEvent): void {
 
   entity = new User(event.params.userAddress);
   entity.userAddress = event.params.userAddress;
-  entity.username = event.params.username.toString();
+  entity.username = event.params.username;
   entity.firstName = event.params.firstName;
   entity.lastName = event.params.lastName;
   entity.country = event.params.country;
@@ -54,7 +54,7 @@ export function handleUserUpdated(event: UserUpdatedEvent): void {
   }
 
   entity.userAddress = event.params.userAddress;
-  entity.username = event.params.username.toString();
+  entity.username = event.params.username;
   entity.firstName = event.params.firstName;
   entity.lastName = event.params.lastName;
   entity.country = event.params.country;
