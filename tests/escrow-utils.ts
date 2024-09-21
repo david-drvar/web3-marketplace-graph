@@ -6,6 +6,7 @@ import {
   TransactionCompleted,
   TransactionCompletedByModerator,
   TransactionCreated,
+  TransactionCreatedWithoutModerator,
   TransactionDisputed
 } from "../generated/Escrow/Escrow"
 
@@ -137,6 +138,40 @@ export function createTransactionCreatedEvent(
   )
 
   return transactionCreatedEvent
+}
+
+export function createTransactionCreatedWithoutModeratorEvent(
+  itemId: BigInt,
+  buyer: Address,
+  seller: Address,
+  price: BigInt,
+  creationTime: BigInt
+): TransactionCreatedWithoutModerator {
+  let transactionCreatedWithoutModeratorEvent =
+    changetype<TransactionCreatedWithoutModerator>(newMockEvent())
+
+  transactionCreatedWithoutModeratorEvent.parameters = new Array()
+
+  transactionCreatedWithoutModeratorEvent.parameters.push(
+    new ethereum.EventParam("itemId", ethereum.Value.fromUnsignedBigInt(itemId))
+  )
+  transactionCreatedWithoutModeratorEvent.parameters.push(
+    new ethereum.EventParam("buyer", ethereum.Value.fromAddress(buyer))
+  )
+  transactionCreatedWithoutModeratorEvent.parameters.push(
+    new ethereum.EventParam("seller", ethereum.Value.fromAddress(seller))
+  )
+  transactionCreatedWithoutModeratorEvent.parameters.push(
+    new ethereum.EventParam("price", ethereum.Value.fromUnsignedBigInt(price))
+  )
+  transactionCreatedWithoutModeratorEvent.parameters.push(
+    new ethereum.EventParam(
+      "creationTime",
+      ethereum.Value.fromUnsignedBigInt(creationTime)
+    )
+  )
+
+  return transactionCreatedWithoutModeratorEvent
 }
 
 export function createTransactionDisputedEvent(

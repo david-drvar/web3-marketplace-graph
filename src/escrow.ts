@@ -5,9 +5,10 @@ import {
   TransactionCompletedByModerator as TransactionCompletedByModeratorEvent,
   TransactionCreated as TransactionCreatedEvent,
   TransactionDisputed as TransactionDisputedEvent,
+  TransactionCreatedWithoutModerator as TransactionCreatedWithoutModeratorEvent,
 } from "../generated/Escrow/Escrow";
 import { Transaction } from "../generated/schema";
-import { log } from "@graphprotocol/graph-ts";
+import { Bytes, log } from "@graphprotocol/graph-ts";
 
 export function handleTransactionApproved(event: TransactionApprovedEvent): void {
   let entity = Transaction.load(event.params.itemId.toString());
@@ -107,4 +108,38 @@ export function handleTransactionDisputed(event: TransactionDisputedEvent): void
   entity.save();
 
   log.info("Transaction with id {} disputed", [entity.id]);
+}
+
+export function handleTransactionCreatedWithoutModerator(event: TransactionCreatedWithoutModeratorEvent): void {
+  let entity = Transaction.load(event.params.itemId.toString());
+  if (entity) {
+    log.error("Transaction with id {} already exists.", [event.params.itemId.toString()]);
+    return;
+  }
+
+  entity = new Transaction(event.params.itemId.toString());
+  entity.itemId = event.params.itemId;
+  entity.buyer = event.params.buyer;
+  entity.seller = event.params.seller;
+  entity.moderator = Bytes.empty();
+  entity.price = event.params.price; // should be 0 from the contract
+  entity.moderatorFee = 0;
+  entity.creationTime = event.params.creationTime;
+
+  entity.buyerApproved = true;
+  entity.sellerApproved = true;
+  entity.disputed = false;
+  entity.disputedByBuyer = false;
+  entity.disputedBySeller = false;
+  entity.isCompleted = true;
+  entity.buyerPercentage = 0;
+  entity.sellerPercentage = 0;
+
+  entity.blockNumber = event.block.number;
+  entity.blockTimestamp = event.block.timestamp;
+  entity.transactionHash = event.transaction.hash;
+
+  entity.save();
+
+  log.info("Transaction with id {} listed", [entity.id]);
 }

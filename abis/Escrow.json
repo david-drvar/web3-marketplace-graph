@@ -7,11 +7,9 @@
     "type": "constructor"
   },
   { "inputs": [], "name": "MustBeDisputed", "type": "error" },
-  { "inputs": [], "name": "OnlyBuyer", "type": "error" },
   { "inputs": [], "name": "OnlyBuyerOrSeller", "type": "error" },
   { "inputs": [], "name": "OnlyMarketplaceContractCanCall", "type": "error" },
   { "inputs": [], "name": "OnlyModerator", "type": "error" },
-  { "inputs": [], "name": "OnlySeller", "type": "error" },
   {
     "inputs": [
       { "internalType": "address", "name": "owner", "type": "address" }
@@ -168,6 +166,43 @@
         "type": "uint256"
       },
       {
+        "indexed": true,
+        "internalType": "address",
+        "name": "buyer",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "creationTime",
+        "type": "uint256"
+      }
+    ],
+    "name": "TransactionCreatedWithoutModerator",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "itemId",
+        "type": "uint256"
+      },
+      {
         "indexed": false,
         "internalType": "address",
         "name": "disputer",
@@ -181,16 +216,7 @@
     "inputs": [
       { "internalType": "uint256", "name": "_itemId", "type": "uint256" }
     ],
-    "name": "approveByBuyer",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "_itemId", "type": "uint256" }
-    ],
-    "name": "approveBySeller",
+    "name": "approve",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -205,6 +231,18 @@
       { "internalType": "uint8", "name": "_moderatorFee", "type": "uint8" }
     ],
     "name": "createTransaction",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_itemId", "type": "uint256" },
+      { "internalType": "address", "name": "_seller", "type": "address" },
+      { "internalType": "address", "name": "_buyer", "type": "address" },
+      { "internalType": "uint256", "name": "_price", "type": "uint256" }
+    ],
+    "name": "createTransactionWithoutModerator",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
@@ -238,8 +276,7 @@
   },
   {
     "inputs": [
-      { "internalType": "uint256", "name": "_itemId", "type": "uint256" },
-      { "internalType": "address", "name": "disputer", "type": "address" }
+      { "internalType": "uint256", "name": "_itemId", "type": "uint256" }
     ],
     "name": "raiseDispute",
     "outputs": [],
