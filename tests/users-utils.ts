@@ -1,7 +1,8 @@
 import { newMockEvent } from "matchstick-as"
-import { ethereum, Address } from "@graphprotocol/graph-ts"
+import { ethereum, Address, BigInt } from "@graphprotocol/graph-ts"
 import {
   OwnershipTransferred,
+  ReviewCreated,
   UserDeleted,
   UserRegistered,
   UserUpdated
@@ -28,6 +29,39 @@ export function createOwnershipTransferredEvent(
   )
 
   return ownershipTransferredEvent
+}
+
+export function createReviewCreatedEvent(
+  from: Address,
+  to: Address,
+  content: string,
+  rating: i32,
+  itemId: BigInt
+): ReviewCreated {
+  let reviewCreatedEvent = changetype<ReviewCreated>(newMockEvent())
+
+  reviewCreatedEvent.parameters = new Array()
+
+  reviewCreatedEvent.parameters.push(
+    new ethereum.EventParam("from", ethereum.Value.fromAddress(from))
+  )
+  reviewCreatedEvent.parameters.push(
+    new ethereum.EventParam("to", ethereum.Value.fromAddress(to))
+  )
+  reviewCreatedEvent.parameters.push(
+    new ethereum.EventParam("content", ethereum.Value.fromString(content))
+  )
+  reviewCreatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "rating",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(rating))
+    )
+  )
+  reviewCreatedEvent.parameters.push(
+    new ethereum.EventParam("itemId", ethereum.Value.fromUnsignedBigInt(itemId))
+  )
+
+  return reviewCreatedEvent
 }
 
 export function createUserDeletedEvent(

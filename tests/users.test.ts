@@ -6,7 +6,7 @@ import {
   beforeAll,
   afterAll
 } from "matchstick-as/assembly/index"
-import { Address } from "@graphprotocol/graph-ts"
+import { Address, BigInt } from "@graphprotocol/graph-ts"
 import { OwnershipTransferred } from "../generated/schema"
 import { OwnershipTransferred as OwnershipTransferredEvent } from "../generated/Users/Users"
 import { handleOwnershipTransferred } from "../src/users"

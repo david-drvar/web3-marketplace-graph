@@ -39,21 +39,25 @@ dataSources:
     name: Users
     network: sepolia
     source:
-      address: "0x5a1eA8d2AF5313EFF0CD08a89a9b7053665CE5Fc"
+      address: "0xfaAA47Fa704633B8e48d8Fb8Ab2b84baf1612CC4"
       abi: Users
-      startBlock: 6727621
+      startBlock: 6839283
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - UserDeleted
-        - UserRegistered
-        - UserUpdated
+        - OwnershipTransferred
+        - ReviewCreated
+        - UsersUserDeleted
+        - UsersUserRegistered
+        - UsersUserUpdated
       abis:
         - name: Users
           file: ./abis/Users.json
       eventHandlers:
+        - event: ReviewCreated(indexed address,indexed address,string,uint8,uint256)
+          handler: handleReviewCreated
         - event: UserDeleted(indexed address,string)
           handler: handleUserDeleted
         - event: UserRegistered(indexed

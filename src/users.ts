@@ -1,5 +1,11 @@
-import { OwnershipTransferred as OwnershipTransferredEvent, UserDeleted as UserDeletedEvent, UserRegistered as UserRegisteredEvent, UserUpdated as UserUpdatedEvent } from "../generated/Users/Users";
-import { User } from "../generated/schema";
+import {
+  OwnershipTransferred as OwnershipTransferredEvent,
+  UserDeleted as UserDeletedEvent,
+  UserRegistered as UserRegisteredEvent,
+  UserUpdated as UserUpdatedEvent,
+  ReviewCreated as ReviewCreatedEvent,
+} from "../generated/Users/Users";
+import { User, Review } from "../generated/schema";
 import { log, store } from "@graphprotocol/graph-ts";
 
 export function handleUserDeleted(event: UserDeletedEvent): void {
@@ -69,4 +75,30 @@ export function handleUserUpdated(event: UserUpdatedEvent): void {
   entity.save();
 
   log.info("User with address {} updated", [entity.userAddress.toHexString()]);
+}
+
+export function handleReviewCreated(event: ReviewCreatedEvent): void {
+  let entity = new Review(event.transaction.hash.concatI32(event.logIndex.toI32()));
+
+  let toUserAddress = event.params.to;
+  let toUser = User.load(toUserAddress);
+
+  if (toUser == null) {
+    log.error("User with address {} does not exist", [toUserAddress.toHexString()]);
+  } else {
+    entity.user = toUserAddress;
+    log.error("Review linked successfully with user {}", [toUserAddress.toHexString()]);
+  }
+
+  entity.from = event.params.from;
+  entity.content = event.params.content;
+  entity.rating = event.params.rating;
+  entity.itemId = event.params.itemId;
+
+  entity.blockNumber = event.block.number;
+  entity.blockTimestamp = event.block.timestamp;
+  entity.transactionHash = event.transaction.hash;
+
+  entity.save();
+  if (toUser != null) toUser.save();
 }

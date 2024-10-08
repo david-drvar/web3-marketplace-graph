@@ -47,6 +47,20 @@ type User @entity {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
   isActive: Boolean!
+
+  reviews: [Review!]! @derivedFrom(field: "user")
+}
+
+type Review @entity {
+  id: Bytes! # unique identifier for the review
+  from: Bytes! # userAddress of the reviewer
+  content: String! # content of the review
+  rating: Int! # rating (1 to 5)
+  itemId: BigInt! # reference to the item being reviewed
+  user: User!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
 }
 
 type Transaction @entity {
