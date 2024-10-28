@@ -54,6 +54,7 @@ export function createItemListedEvent(
   title: string,
   description: string,
   price: BigInt,
+  currency: string,
   photosIPFSHashes: Array<string>,
   condition: i32,
   category: string,
@@ -82,6 +83,9 @@ export function createItemListedEvent(
   )
   itemListedEvent.parameters.push(
     new ethereum.EventParam("price", ethereum.Value.fromUnsignedBigInt(price))
+  )
+  itemListedEvent.parameters.push(
+    new ethereum.EventParam("currency", ethereum.Value.fromString(currency))
   )
   itemListedEvent.parameters.push(
     new ethereum.EventParam(
@@ -120,6 +124,7 @@ export function createItemUpdatedEvent(
   title: string,
   description: string,
   price: BigInt,
+  currency: string,
   photosIPFSHashes: Array<string>,
   condition: i32,
   category: string,
@@ -148,6 +153,9 @@ export function createItemUpdatedEvent(
   )
   itemUpdatedEvent.parameters.push(
     new ethereum.EventParam("price", ethereum.Value.fromUnsignedBigInt(price))
+  )
+  itemUpdatedEvent.parameters.push(
+    new ethereum.EventParam("currency", ethereum.Value.fromString(currency))
   )
   itemUpdatedEvent.parameters.push(
     new ethereum.EventParam(

@@ -46,6 +46,7 @@ export function handleItemListed(event: ItemListedEvent): void {
   entity.title = event.params.title;
   entity.description = event.params.description;
   entity.price = event.params.price;
+  entity.currency = event.params.currency;
   entity.photosIPFSHashes = event.params.photosIPFSHashes;
   entity.itemStatus = "Listed";
 
@@ -79,6 +80,7 @@ export function handleItemUpdated(event: ItemUpdatedEvent): void {
   entity.title = event.params.title;
   entity.description = event.params.description;
   entity.price = event.params.price;
+  entity.currency = event.params.currency;
   entity.photosIPFSHashes = event.params.photosIPFSHashes;
 
   if (event.params.condition == 0) entity.condition = "NEW";

@@ -19,6 +19,7 @@ type Item @entity {
   title: String! # string
   description: String! # string
   price: BigInt! # uint256
+  currency: String! # string
   photosIPFSHashes: [String!]! # array of strings that are photo hashes
   itemStatus: ItemStatus!
   condition: Condition! # uint8

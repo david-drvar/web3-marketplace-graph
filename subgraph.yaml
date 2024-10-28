@@ -8,19 +8,18 @@ dataSources:
     name: Marketplace
     network: sepolia
     source:
-      address: "0x97D0662dC69d42253315335fF3cB0d118b11fd1c"
+      address: "0x3bDA9878eee2806A8B2f37F3d4c5e333aB7Bf838"
       abi: Marketplace
-      startBlock: 6839275
+      startBlock: 6962710
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - MarketplaceItemBought
-        - MarketplaceItemDeleted
-        - MarketplaceItemListed
-        - MarketplaceItemUpdated
-        - MarketplaceOwnershipTransferred
+        - ItemBought
+        - ItemDeleted
+        - ItemListed
+        - ItemUpdated
       abis:
         - name: Marketplace
           file: ./abis/Marketplace.json
@@ -30,10 +29,10 @@ dataSources:
         - event: ItemDeleted(indexed uint256,indexed address)
           handler: handleItemDeleted
         - event: ItemListed(indexed uint256,indexed
-            address,string,string,uint256,string[],uint8,string,string,string,bool)
+            address,string,string,uint256,string,string[],uint8,string,string,string,bool)
           handler: handleItemListed
         - event: ItemUpdated(indexed uint256,indexed
-            address,string,string,uint256,string[],uint8,string,string,string,bool)
+            address,string,string,uint256,string,string[],uint8,string,string,string,bool)
           handler: handleItemUpdated
       file: ./src/marketplace.ts
   - kind: ethereum

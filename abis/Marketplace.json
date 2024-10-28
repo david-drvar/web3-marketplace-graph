@@ -69,6 +69,7 @@
     "name": "SentValueDifferentThanItemPrice",
     "type": "error"
   },
+  { "inputs": [], "name": "TokenNotSupported", "type": "error" },
   {
     "anonymous": false,
     "inputs": [
@@ -148,6 +149,12 @@
       },
       {
         "indexed": false,
+        "internalType": "string",
+        "name": "currency",
+        "type": "string"
+      },
+      {
+        "indexed": false,
         "internalType": "string[]",
         "name": "photosIPFSHashes",
         "type": "string[]"
@@ -221,6 +228,12 @@
       },
       {
         "indexed": false,
+        "internalType": "string",
+        "name": "currency",
+        "type": "string"
+      },
+      {
+        "indexed": false,
         "internalType": "string[]",
         "name": "photosIPFSHashes",
         "type": "string[]"
@@ -287,6 +300,16 @@
   },
   {
     "inputs": [
+      { "internalType": "string", "name": "tokenName", "type": "string" },
+      { "internalType": "address", "name": "tokenAddress", "type": "address" }
+    ],
+    "name": "addSupportedToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
       { "internalType": "address", "name": "sellerAddress", "type": "address" },
       { "internalType": "uint256", "name": "id", "type": "uint256" },
       { "internalType": "address", "name": "_moderator", "type": "address" }
@@ -331,23 +354,38 @@
   },
   {
     "inputs": [
-      { "internalType": "string", "name": "_title", "type": "string" },
-      { "internalType": "string", "name": "_description", "type": "string" },
-      { "internalType": "uint256", "name": "_price", "type": "uint256" },
       {
-        "internalType": "string[]",
-        "name": "photosIPFSHashes",
-        "type": "string[]"
-      },
-      {
-        "internalType": "enum Marketplace.Condition",
-        "name": "_condition",
-        "type": "uint8"
-      },
-      { "internalType": "string", "name": "_category", "type": "string" },
-      { "internalType": "string", "name": "_subcategory", "type": "string" },
-      { "internalType": "string", "name": "_country", "type": "string" },
-      { "internalType": "bool", "name": "_isGift", "type": "bool" }
+        "components": [
+          { "internalType": "uint256", "name": "id", "type": "uint256" },
+          { "internalType": "address", "name": "seller", "type": "address" },
+          { "internalType": "uint256", "name": "price", "type": "uint256" },
+          { "internalType": "string", "name": "currency", "type": "string" },
+          { "internalType": "string", "name": "description", "type": "string" },
+          { "internalType": "string", "name": "title", "type": "string" },
+          {
+            "internalType": "string[]",
+            "name": "photosIPFSHashes",
+            "type": "string[]"
+          },
+          {
+            "internalType": "enum Marketplace.ItemStatus",
+            "name": "itemStatus",
+            "type": "uint8"
+          },
+          {
+            "internalType": "enum Marketplace.Condition",
+            "name": "condition",
+            "type": "uint8"
+          },
+          { "internalType": "string", "name": "category", "type": "string" },
+          { "internalType": "string", "name": "subcategory", "type": "string" },
+          { "internalType": "string", "name": "country", "type": "string" },
+          { "internalType": "bool", "name": "isGift", "type": "bool" }
+        ],
+        "internalType": "struct Marketplace.Item",
+        "name": "item",
+        "type": "tuple"
+      }
     ],
     "name": "listNewItem",
     "outputs": [],
@@ -395,6 +433,13 @@
     "type": "function"
   },
   {
+    "inputs": [{ "internalType": "string", "name": "", "type": "string" }],
+    "name": "supportedTokens",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       { "internalType": "address", "name": "newOwner", "type": "address" }
     ],
@@ -405,24 +450,38 @@
   },
   {
     "inputs": [
-      { "internalType": "uint256", "name": "id", "type": "uint256" },
-      { "internalType": "string", "name": "_title", "type": "string" },
-      { "internalType": "string", "name": "_description", "type": "string" },
-      { "internalType": "uint256", "name": "_price", "type": "uint256" },
       {
-        "internalType": "string[]",
-        "name": "photosIPFSHashes",
-        "type": "string[]"
-      },
-      {
-        "internalType": "enum Marketplace.Condition",
-        "name": "_condition",
-        "type": "uint8"
-      },
-      { "internalType": "string", "name": "_category", "type": "string" },
-      { "internalType": "string", "name": "_subcategory", "type": "string" },
-      { "internalType": "string", "name": "_country", "type": "string" },
-      { "internalType": "bool", "name": "_isGift", "type": "bool" }
+        "components": [
+          { "internalType": "uint256", "name": "id", "type": "uint256" },
+          { "internalType": "address", "name": "seller", "type": "address" },
+          { "internalType": "uint256", "name": "price", "type": "uint256" },
+          { "internalType": "string", "name": "currency", "type": "string" },
+          { "internalType": "string", "name": "description", "type": "string" },
+          { "internalType": "string", "name": "title", "type": "string" },
+          {
+            "internalType": "string[]",
+            "name": "photosIPFSHashes",
+            "type": "string[]"
+          },
+          {
+            "internalType": "enum Marketplace.ItemStatus",
+            "name": "itemStatus",
+            "type": "uint8"
+          },
+          {
+            "internalType": "enum Marketplace.Condition",
+            "name": "condition",
+            "type": "uint8"
+          },
+          { "internalType": "string", "name": "category", "type": "string" },
+          { "internalType": "string", "name": "subcategory", "type": "string" },
+          { "internalType": "string", "name": "country", "type": "string" },
+          { "internalType": "bool", "name": "isGift", "type": "bool" }
+        ],
+        "internalType": "struct Marketplace.Item",
+        "name": "item",
+        "type": "tuple"
+      }
     ],
     "name": "updateItem",
     "outputs": [],
