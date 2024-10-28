@@ -71,6 +71,7 @@ type Transaction @entity {
   seller: Bytes! # address
   moderator: Bytes! # address
   price: BigInt! # uint256
+  currency: String! # string
   moderatorFee: Int! # uint256
   buyerApproved: Boolean!
   sellerApproved: Boolean!
@@ -84,4 +85,76 @@ type Transaction @entity {
   transactionHash: Bytes!
   buyerPercentage: Int! # uint8
   sellerPercentage: Int! # uint8
+}
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type EscrowTransactionApproved @entity(immutable: true) {
+  id: Bytes!
+  itemId: BigInt! # uint256
+  approver: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type EscrowTransactionCompleted @entity(immutable: true) {
+  id: Bytes!
+  itemId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type EscrowTransactionCompletedByModerator @entity(immutable: true) {
+  id: Bytes!
+  itemId: BigInt! # uint256
+  buyerPercentage: Int! # uint8
+  sellerPercentage: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type EscrowTransactionCreated @entity(immutable: true) {
+  id: Bytes!
+  itemId: BigInt! # uint256
+  buyer: Bytes! # address
+  seller: Bytes! # address
+  moderator: Bytes! # address
+  price: BigInt! # uint256
+  currency: String! # string
+  moderatorFee: Int! # uint8
+  creationTime: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TransactionCreatedWithoutModerator @entity(immutable: true) {
+  id: Bytes!
+  itemId: BigInt! # uint256
+  buyer: Bytes! # address
+  seller: Bytes! # address
+  price: BigInt! # uint256
+  currency: String! # string
+  creationTime: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type EscrowTransactionDisputed @entity(immutable: true) {
+  id: Bytes!
+  itemId: BigInt! # uint256
+  disputer: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
 }

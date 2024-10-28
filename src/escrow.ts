@@ -69,6 +69,7 @@ export function handleTransactionCreated(event: TransactionCreatedEvent): void {
   entity.seller = event.params.seller;
   entity.moderator = event.params.moderator;
   entity.price = event.params.price;
+  entity.currency = event.params.currency;
   entity.moderatorFee = event.params.moderatorFee;
   entity.creationTime = event.params.creationTime;
 
@@ -123,6 +124,7 @@ export function handleTransactionCreatedWithoutModerator(event: TransactionCreat
   entity.seller = event.params.seller;
   entity.moderator = Bytes.empty();
   entity.price = event.params.price; // should be 0 from the contract
+  entity.currency = event.params.currency;
   entity.moderatorFee = 0;
   entity.creationTime = event.params.creationTime;
 

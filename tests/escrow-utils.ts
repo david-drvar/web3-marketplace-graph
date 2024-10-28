@@ -102,6 +102,7 @@ export function createTransactionCreatedEvent(
   seller: Address,
   moderator: Address,
   price: BigInt,
+  currency: string,
   moderatorFee: i32,
   creationTime: BigInt
 ): TransactionCreated {
@@ -125,6 +126,9 @@ export function createTransactionCreatedEvent(
     new ethereum.EventParam("price", ethereum.Value.fromUnsignedBigInt(price))
   )
   transactionCreatedEvent.parameters.push(
+    new ethereum.EventParam("currency", ethereum.Value.fromString(currency))
+  )
+  transactionCreatedEvent.parameters.push(
     new ethereum.EventParam(
       "moderatorFee",
       ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(moderatorFee))
@@ -145,6 +149,7 @@ export function createTransactionCreatedWithoutModeratorEvent(
   buyer: Address,
   seller: Address,
   price: BigInt,
+  currency: string,
   creationTime: BigInt
 ): TransactionCreatedWithoutModerator {
   let transactionCreatedWithoutModeratorEvent =
@@ -163,6 +168,9 @@ export function createTransactionCreatedWithoutModeratorEvent(
   )
   transactionCreatedWithoutModeratorEvent.parameters.push(
     new ethereum.EventParam("price", ethereum.Value.fromUnsignedBigInt(price))
+  )
+  transactionCreatedWithoutModeratorEvent.parameters.push(
+    new ethereum.EventParam("currency", ethereum.Value.fromString(currency))
   )
   transactionCreatedWithoutModeratorEvent.parameters.push(
     new ethereum.EventParam(

@@ -143,6 +143,12 @@
       },
       {
         "indexed": false,
+        "internalType": "string",
+        "name": "currency",
+        "type": "string"
+      },
+      {
+        "indexed": false,
         "internalType": "uint8",
         "name": "moderatorFee",
         "type": "uint8"
@@ -186,6 +192,12 @@
       },
       {
         "indexed": false,
+        "internalType": "string",
+        "name": "currency",
+        "type": "string"
+      },
+      {
+        "indexed": false,
         "internalType": "uint256",
         "name": "creationTime",
         "type": "uint256"
@@ -215,6 +227,16 @@
   },
   {
     "inputs": [
+      { "internalType": "string", "name": "tokenName", "type": "string" },
+      { "internalType": "address", "name": "tokenAddress", "type": "address" }
+    ],
+    "name": "addSupportedToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
       { "internalType": "uint256", "name": "_itemId", "type": "uint256" }
     ],
     "name": "approve",
@@ -229,6 +251,7 @@
       { "internalType": "address", "name": "_buyer", "type": "address" },
       { "internalType": "address", "name": "_moderator", "type": "address" },
       { "internalType": "uint256", "name": "_price", "type": "uint256" },
+      { "internalType": "string", "name": "_currency", "type": "string" },
       { "internalType": "uint8", "name": "_moderatorFee", "type": "uint8" }
     ],
     "name": "createTransaction",
@@ -241,7 +264,8 @@
       { "internalType": "uint256", "name": "_itemId", "type": "uint256" },
       { "internalType": "address", "name": "_seller", "type": "address" },
       { "internalType": "address", "name": "_buyer", "type": "address" },
-      { "internalType": "uint256", "name": "_price", "type": "uint256" }
+      { "internalType": "uint256", "name": "_price", "type": "uint256" },
+      { "internalType": "string", "name": "_currency", "type": "string" }
     ],
     "name": "createTransactionWithoutModerator",
     "outputs": [],
@@ -326,6 +350,13 @@
     "name": "setUsersContractAddress",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "string", "name": "", "type": "string" }],
+    "name": "supportedTokens",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
     "type": "function"
   },
   {
