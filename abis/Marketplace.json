@@ -60,15 +60,6 @@
     "name": "SellerCannotBuyItsItem",
     "type": "error"
   },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "sellerAddress", "type": "address" },
-      { "internalType": "uint256", "name": "id", "type": "uint256" },
-      { "internalType": "uint256", "name": "value", "type": "uint256" }
-    ],
-    "name": "SentValueDifferentThanItemPrice",
-    "type": "error"
-  },
   { "inputs": [], "name": "TokenNotSupported", "type": "error" },
   {
     "anonymous": false,

@@ -1,13 +1,13 @@
 {
   "sepolia": {
     "Marketplace": {
-      "address": "0x3bDA9878eee2806A8B2f37F3d4c5e333aB7Bf838"
+      "address": "0x711e0Fe1f2Fb2af35D9D48252A2506AfaFCB7Da0"
     },
     "Users": {
-      "address": "0xb9fC95CdF45f68842B238bc038aBBDD9fE36f5B3"
+      "address": "0x7336c03C02dbC1CA2f48F998966e8bea3CB24FD5"
     },
     "Escrow": {
-      "address": "0x01a43a887155c696Add76c05bfDc81302e49FD8f"
+      "address": "0xFc4815b9de685D433c7b403d0e94E72e8642f97a"
     }
   }
 }
