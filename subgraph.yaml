@@ -8,9 +8,9 @@ dataSources:
     name: Marketplace
     network: sepolia
     source:
-      address: "0x711e0Fe1f2Fb2af35D9D48252A2506AfaFCB7Da0"
+      address: "0xF145D08B6a8793f1a40023E5c9f85d83C4B75734"
       abi: Marketplace
-      startBlock: 6976899
+      startBlock: 7104012
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -40,9 +40,9 @@ dataSources:
     name: Users
     network: sepolia
     source:
-      address: "0x7336c03C02dbC1CA2f48F998966e8bea3CB24FD5"
+      address: "0xE675076c167d88f2c46FA2841411245F0108561A"
       abi: Users
-      startBlock: 6976906
+      startBlock: 7104021
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -71,9 +71,9 @@ dataSources:
     name: Escrow
     network: sepolia
     source:
-      address: "0xFc4815b9de685D433c7b403d0e94E72e8642f97a"
+      address: "0x57a2940846Bbe533E76Fae91064eF2ca875996c3"
       abi: Escrow
-      startBlock: 6976881
+      startBlock: 7104028
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
