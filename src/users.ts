@@ -1,26 +1,11 @@
 import {
   OwnershipTransferred as OwnershipTransferredEvent,
-  UserDeleted as UserDeletedEvent,
   UserRegistered as UserRegisteredEvent,
   UserUpdated as UserUpdatedEvent,
   ReviewCreated as ReviewCreatedEvent,
 } from "../generated/Users/Users";
 import { User, Review } from "../generated/schema";
 import { log, store } from "@graphprotocol/graph-ts";
-
-export function handleUserDeleted(event: UserDeletedEvent): void {
-  let entity = User.load(event.params.userAddress);
-  if (!entity) {
-    log.error("User with address {} doesn't exist. Error during handleUserDeleted.", [event.params.userAddress.toHexString()]);
-    return;
-  }
-
-  entity.isActive = false;
-
-  entity.save();
-
-  log.info("User with address {} deleted", [entity.userAddress.toHexString()]);
-}
 
 export function handleUserRegistered(event: UserRegisteredEvent): void {
   let entity = User.load(event.params.userAddress);
