@@ -1,113 +1,19 @@
 [
-  {
-    "inputs": [],
-    "name": "AlreadyReviewed",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "InvalidInitialization",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint8",
-        "name": "moderatorFee",
-        "type": "uint8"
-      }
-    ],
-    "name": "ModeratorFeeLimitsNotRespected",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotInitializing",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "owner",
-        "type": "address"
-      }
-    ],
-    "name": "OwnableInvalidOwner",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
-    ],
-    "name": "OwnableUnauthorizedAccount",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "userAddress",
-        "type": "address"
-      }
-    ],
-    "name": "UserAlreadyExists",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "userAddress",
-        "type": "address"
-      }
-    ],
-    "name": "UserDoesNotExist",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "username",
-        "type": "string"
-      }
-    ],
-    "name": "UsernameExists",
-    "type": "error"
-  },
+  { "inputs": [], "name": "AlreadyReviewed", "type": "error" },
+  { "inputs": [], "name": "InvalidInitialization", "type": "error" },
+  { "inputs": [{ "internalType": "uint8", "name": "moderatorFee", "type": "uint8" }], "name": "ModeratorFeeLimitsNotRespected", "type": "error" },
+  { "inputs": [], "name": "NotInitializing", "type": "error" },
+  { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }], "name": "OwnableInvalidOwner", "type": "error" },
+  { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }], "name": "OwnableUnauthorizedAccount", "type": "error" },
+  { "inputs": [{ "internalType": "address", "name": "userAddress", "type": "address" }], "name": "UserAlreadyExists", "type": "error" },
+  { "inputs": [{ "internalType": "address", "name": "userAddress", "type": "address" }], "name": "UserDoesNotExist", "type": "error" },
+  { "inputs": [{ "internalType": "string", "name": "username", "type": "string" }], "name": "UsernameExists", "type": "error" },
+  { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint64", "name": "version", "type": "uint64" }], "name": "Initialized", "type": "event" },
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint64",
-        "name": "version",
-        "type": "uint64"
-      }
-    ],
-    "name": "Initialized",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "previousOwner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
+      { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }
     ],
     "name": "OwnershipTransferred",
     "type": "event"
@@ -115,36 +21,11 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "from",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "content",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint8",
-        "name": "rating",
-        "type": "uint8"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "itemId",
-        "type": "uint256"
-      }
+      { "indexed": true, "internalType": "address", "name": "from", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "to", "type": "address" },
+      { "indexed": false, "internalType": "string", "name": "content", "type": "string" },
+      { "indexed": false, "internalType": "uint8", "name": "rating", "type": "uint8" },
+      { "indexed": false, "internalType": "uint256", "name": "itemId", "type": "uint256" }
     ],
     "name": "ReviewCreated",
     "type": "event"
@@ -152,66 +33,16 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "userAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "username",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "firstName",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "lastName",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "country",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "description",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "email",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "avatarHash",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "isModerator",
-        "type": "bool"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint8",
-        "name": "moderatorFee",
-        "type": "uint8"
-      }
+      { "indexed": true, "internalType": "address", "name": "userAddress", "type": "address" },
+      { "indexed": false, "internalType": "string", "name": "username", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "firstName", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "lastName", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "country", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "description", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "email", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "avatarHash", "type": "string" },
+      { "indexed": false, "internalType": "bool", "name": "isModerator", "type": "bool" },
+      { "indexed": false, "internalType": "uint8", "name": "moderatorFee", "type": "uint8" }
     ],
     "name": "UserRegistered",
     "type": "event"
@@ -219,117 +50,31 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "userAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "username",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "firstName",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "lastName",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "country",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "description",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "email",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "avatarHash",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "isModerator",
-        "type": "bool"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint8",
-        "name": "moderatorFee",
-        "type": "uint8"
-      }
+      { "indexed": true, "internalType": "address", "name": "userAddress", "type": "address" },
+      { "indexed": false, "internalType": "string", "name": "username", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "firstName", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "lastName", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "country", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "description", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "email", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "avatarHash", "type": "string" },
+      { "indexed": false, "internalType": "bool", "name": "isModerator", "type": "bool" },
+      { "indexed": false, "internalType": "uint8", "name": "moderatorFee", "type": "uint8" }
     ],
     "name": "UserUpdated",
     "type": "event"
   },
   {
     "inputs": [
-      {
-        "internalType": "string",
-        "name": "_username",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_firstName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_lastName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_country",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_description",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_email",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_avatarHash",
-        "type": "string"
-      },
-      {
-        "internalType": "bool",
-        "name": "_isModerator",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint8",
-        "name": "_moderatorFee",
-        "type": "uint8"
-      }
+      { "internalType": "string", "name": "_username", "type": "string" },
+      { "internalType": "string", "name": "_firstName", "type": "string" },
+      { "internalType": "string", "name": "_lastName", "type": "string" },
+      { "internalType": "string", "name": "_country", "type": "string" },
+      { "internalType": "string", "name": "_description", "type": "string" },
+      { "internalType": "string", "name": "_email", "type": "string" },
+      { "internalType": "string", "name": "_avatarHash", "type": "string" },
+      { "internalType": "bool", "name": "_isModerator", "type": "bool" },
+      { "internalType": "uint8", "name": "_moderatorFee", "type": "uint8" }
     ],
     "name": "createProfile",
     "outputs": [],
@@ -338,112 +83,34 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "toWhom",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "itemId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint8",
-        "name": "rating",
-        "type": "uint8"
-      },
-      {
-        "internalType": "string",
-        "name": "content",
-        "type": "string"
-      }
+      { "internalType": "address", "name": "toWhom", "type": "address" },
+      { "internalType": "uint256", "name": "itemId", "type": "uint256" },
+      { "internalType": "uint8", "name": "rating", "type": "uint8" },
+      { "internalType": "string", "name": "content", "type": "string" }
     ],
     "name": "createReview",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
+  { "inputs": [], "name": "escrowContract", "outputs": [{ "internalType": "contract IEscrow", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" },
   {
-    "inputs": [],
-    "name": "escrowContract",
-    "outputs": [
-      {
-        "internalType": "contract IEscrow",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_user", "type": "address" }],
     "name": "getProfile",
     "outputs": [
       {
         "components": [
-          {
-            "internalType": "address",
-            "name": "userAddress",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "username",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "firstName",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "lastName",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "country",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "description",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "email",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "avatarHash",
-            "type": "string"
-          },
-          {
-            "internalType": "bool",
-            "name": "isModerator",
-            "type": "bool"
-          },
-          {
-            "internalType": "bool",
-            "name": "exists",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint8",
-            "name": "moderatorFee",
-            "type": "uint8"
-          }
+          { "internalType": "address", "name": "userAddress", "type": "address" },
+          { "internalType": "string", "name": "username", "type": "string" },
+          { "internalType": "string", "name": "firstName", "type": "string" },
+          { "internalType": "string", "name": "lastName", "type": "string" },
+          { "internalType": "string", "name": "country", "type": "string" },
+          { "internalType": "string", "name": "description", "type": "string" },
+          { "internalType": "string", "name": "email", "type": "string" },
+          { "internalType": "string", "name": "avatarHash", "type": "string" },
+          { "internalType": "bool", "name": "isModerator", "type": "bool" },
+          { "internalType": "bool", "name": "exists", "type": "bool" },
+          { "internalType": "uint8", "name": "moderatorFee", "type": "uint8" }
         ],
         "internalType": "struct Users.UserProfile",
         "name": "",
@@ -453,215 +120,59 @@
     "stateMutability": "view",
     "type": "function"
   },
+  { "inputs": [{ "internalType": "address", "name": "initialOwner", "type": "address" }], "name": "initialize", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "initialOwner",
-        "type": "address"
-      }
-    ],
-    "name": "initialize",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_user", "type": "address" }],
     "name": "isModerator",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_user", "type": "address" }],
     "name": "isRegisteredUser",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "view",
     "type": "function"
   },
-  {
-    "inputs": [],
-    "name": "maxModeratorFee",
-    "outputs": [
-      {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "owner",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "renounceOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
+  { "inputs": [], "name": "maxModeratorFee", "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "uint256", "name": "", "type": "uint256" }
     ],
     "name": "reviews",
     "outputs": [
-      {
-        "internalType": "string",
-        "name": "content",
-        "type": "string"
-      },
-      {
-        "internalType": "uint8",
-        "name": "rating",
-        "type": "uint8"
-      },
-      {
-        "internalType": "uint256",
-        "name": "itemId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "from",
-        "type": "address"
-      }
+      { "internalType": "string", "name": "content", "type": "string" },
+      { "internalType": "uint8", "name": "rating", "type": "uint8" },
+      { "internalType": "uint256", "name": "itemId", "type": "uint256" },
+      { "internalType": "address", "name": "from", "type": "address" }
     ],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_escrowContractAddress",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_escrowContractAddress", "type": "address" }],
     "name": "setEscrowContractAddress",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
+  { "inputs": [{ "internalType": "uint8", "name": "newFee", "type": "uint8" }], "name": "setMaxModeratorFee", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  { "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }], "name": "transferOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
     "inputs": [
-      {
-        "internalType": "uint8",
-        "name": "newFee",
-        "type": "uint8"
-      }
-    ],
-    "name": "setMaxModeratorFee",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
-    ],
-    "name": "transferOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "_username",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_firstName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_lastName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_country",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_description",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_email",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_avatarHash",
-        "type": "string"
-      },
-      {
-        "internalType": "bool",
-        "name": "_isModerator",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint8",
-        "name": "_moderatorFee",
-        "type": "uint8"
-      }
+      { "internalType": "string", "name": "_username", "type": "string" },
+      { "internalType": "string", "name": "_firstName", "type": "string" },
+      { "internalType": "string", "name": "_lastName", "type": "string" },
+      { "internalType": "string", "name": "_country", "type": "string" },
+      { "internalType": "string", "name": "_description", "type": "string" },
+      { "internalType": "string", "name": "_email", "type": "string" },
+      { "internalType": "string", "name": "_avatarHash", "type": "string" },
+      { "internalType": "bool", "name": "_isModerator", "type": "bool" },
+      { "internalType": "uint8", "name": "_moderatorFee", "type": "uint8" }
     ],
     "name": "updateProfile",
     "outputs": [],
@@ -669,70 +180,20 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "name": "userProfiles",
     "outputs": [
-      {
-        "internalType": "address",
-        "name": "userAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "username",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "firstName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "lastName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "country",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "description",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "email",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "avatarHash",
-        "type": "string"
-      },
-      {
-        "internalType": "bool",
-        "name": "isModerator",
-        "type": "bool"
-      },
-      {
-        "internalType": "bool",
-        "name": "exists",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint8",
-        "name": "moderatorFee",
-        "type": "uint8"
-      }
+      { "internalType": "address", "name": "userAddress", "type": "address" },
+      { "internalType": "string", "name": "username", "type": "string" },
+      { "internalType": "string", "name": "firstName", "type": "string" },
+      { "internalType": "string", "name": "lastName", "type": "string" },
+      { "internalType": "string", "name": "country", "type": "string" },
+      { "internalType": "string", "name": "description", "type": "string" },
+      { "internalType": "string", "name": "email", "type": "string" },
+      { "internalType": "string", "name": "avatarHash", "type": "string" },
+      { "internalType": "bool", "name": "isModerator", "type": "bool" },
+      { "internalType": "bool", "name": "exists", "type": "bool" },
+      { "internalType": "uint8", "name": "moderatorFee", "type": "uint8" }
     ],
     "stateMutability": "view",
     "type": "function"

@@ -1,110 +1,22 @@
 [
-  {
-    "inputs": [],
-    "name": "InvalidInitialization",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "MustBeDisputed",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotInitializing",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "OnlyBuyerOrSeller",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "OnlyMarketplaceContractCanCall",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "OnlyModerator",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "OnlyUsersContractCanCall",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "owner",
-        "type": "address"
-      }
-    ],
-    "name": "OwnableInvalidOwner",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
-    ],
-    "name": "OwnableUnauthorizedAccount",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "TxCantBeCompleted",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "id",
-        "type": "uint256"
-      }
-    ],
-    "name": "TxExists",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "ValueDistributionNotCorrect",
-    "type": "error"
-  },
+  { "inputs": [], "name": "InvalidInitialization", "type": "error" },
+  { "inputs": [], "name": "MustBeDisputed", "type": "error" },
+  { "inputs": [], "name": "NotInitializing", "type": "error" },
+  { "inputs": [], "name": "OnlyBuyerOrSeller", "type": "error" },
+  { "inputs": [], "name": "OnlyMarketplaceContractCanCall", "type": "error" },
+  { "inputs": [], "name": "OnlyModerator", "type": "error" },
+  { "inputs": [], "name": "OnlyUsersContractCanCall", "type": "error" },
+  { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }], "name": "OwnableInvalidOwner", "type": "error" },
+  { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }], "name": "OwnableUnauthorizedAccount", "type": "error" },
+  { "inputs": [], "name": "TxCantBeCompleted", "type": "error" },
+  { "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }], "name": "TxExists", "type": "error" },
+  { "inputs": [], "name": "ValueDistributionNotCorrect", "type": "error" },
+  { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint64", "name": "version", "type": "uint64" }], "name": "Initialized", "type": "event" },
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint64",
-        "name": "version",
-        "type": "uint64"
-      }
-    ],
-    "name": "Initialized",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "previousOwner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
+      { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }
     ],
     "name": "OwnershipTransferred",
     "type": "event"
@@ -112,56 +24,19 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "itemId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "approver",
-        "type": "address"
-      }
+      { "indexed": true, "internalType": "uint256", "name": "itemId", "type": "uint256" },
+      { "indexed": false, "internalType": "address", "name": "approver", "type": "address" }
     ],
     "name": "TransactionApproved",
     "type": "event"
   },
+  { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint256", "name": "itemId", "type": "uint256" }], "name": "TransactionCompleted", "type": "event" },
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "itemId",
-        "type": "uint256"
-      }
-    ],
-    "name": "TransactionCompleted",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "itemId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint8",
-        "name": "buyerPercentage",
-        "type": "uint8"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint8",
-        "name": "sellerPercentage",
-        "type": "uint8"
-      }
+      { "indexed": true, "internalType": "uint256", "name": "itemId", "type": "uint256" },
+      { "indexed": false, "internalType": "uint8", "name": "buyerPercentage", "type": "uint8" },
+      { "indexed": false, "internalType": "uint8", "name": "sellerPercentage", "type": "uint8" }
     ],
     "name": "TransactionCompletedByModerator",
     "type": "event"
@@ -169,54 +44,14 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "itemId",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "buyer",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "seller",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "moderator",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "price",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "currency",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint8",
-        "name": "moderatorFee",
-        "type": "uint8"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "creationTime",
-        "type": "uint256"
-      }
+      { "indexed": true, "internalType": "uint256", "name": "itemId", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "buyer", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "seller", "type": "address" },
+      { "indexed": false, "internalType": "address", "name": "moderator", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "price", "type": "uint256" },
+      { "indexed": false, "internalType": "string", "name": "currency", "type": "string" },
+      { "indexed": false, "internalType": "uint8", "name": "moderatorFee", "type": "uint8" },
+      { "indexed": false, "internalType": "uint256", "name": "creationTime", "type": "uint256" }
     ],
     "name": "TransactionCreated",
     "type": "event"
@@ -224,42 +59,12 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "itemId",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "buyer",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "seller",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "price",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "currency",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "creationTime",
-        "type": "uint256"
-      }
+      { "indexed": true, "internalType": "uint256", "name": "itemId", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "buyer", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "seller", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "price", "type": "uint256" },
+      { "indexed": false, "internalType": "string", "name": "currency", "type": "string" },
+      { "indexed": false, "internalType": "uint256", "name": "creationTime", "type": "uint256" }
     ],
     "name": "TransactionCreatedWithoutModerator",
     "type": "event"
@@ -267,90 +72,32 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "itemId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "disputer",
-        "type": "address"
-      }
+      { "indexed": true, "internalType": "uint256", "name": "itemId", "type": "uint256" },
+      { "indexed": false, "internalType": "address", "name": "disputer", "type": "address" }
     ],
     "name": "TransactionDisputed",
     "type": "event"
   },
   {
     "inputs": [
-      {
-        "internalType": "string",
-        "name": "tokenName",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "tokenAddress",
-        "type": "address"
-      }
+      { "internalType": "string", "name": "tokenName", "type": "string" },
+      { "internalType": "address", "name": "tokenAddress", "type": "address" }
     ],
     "name": "addSupportedToken",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
+  { "inputs": [{ "internalType": "uint256", "name": "_itemId", "type": "uint256" }], "name": "approve", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
     "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_itemId",
-        "type": "uint256"
-      }
-    ],
-    "name": "approve",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_itemId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_seller",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_buyer",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_moderator",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_price",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "_currency",
-        "type": "string"
-      },
-      {
-        "internalType": "uint8",
-        "name": "_moderatorFee",
-        "type": "uint8"
-      }
+      { "internalType": "uint256", "name": "_itemId", "type": "uint256" },
+      { "internalType": "address", "name": "_seller", "type": "address" },
+      { "internalType": "address", "name": "_buyer", "type": "address" },
+      { "internalType": "address", "name": "_moderator", "type": "address" },
+      { "internalType": "uint256", "name": "_price", "type": "uint256" },
+      { "internalType": "string", "name": "_currency", "type": "string" },
+      { "internalType": "uint8", "name": "_moderatorFee", "type": "uint8" }
     ],
     "name": "createTransaction",
     "outputs": [],
@@ -359,31 +106,11 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_itemId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_seller",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_buyer",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_price",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "_currency",
-        "type": "string"
-      }
+      { "internalType": "uint256", "name": "_itemId", "type": "uint256" },
+      { "internalType": "address", "name": "_seller", "type": "address" },
+      { "internalType": "address", "name": "_buyer", "type": "address" },
+      { "internalType": "uint256", "name": "_price", "type": "uint256" },
+      { "internalType": "string", "name": "_currency", "type": "string" }
     ],
     "name": "createTransactionWithoutModerator",
     "outputs": [],
@@ -392,184 +119,52 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_itemId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint8",
-        "name": "percentageSeller",
-        "type": "uint8"
-      },
-      {
-        "internalType": "uint8",
-        "name": "percentageBuyer",
-        "type": "uint8"
-      }
+      { "internalType": "uint256", "name": "_itemId", "type": "uint256" },
+      { "internalType": "uint8", "name": "percentageSeller", "type": "uint8" },
+      { "internalType": "uint8", "name": "percentageBuyer", "type": "uint8" }
     ],
     "name": "finalizeTransactionByModerator",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
   },
+  { "inputs": [{ "internalType": "address", "name": "initialOwner", "type": "address" }], "name": "initialize", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "initialOwner",
-        "type": "address"
-      }
-    ],
-    "name": "initialize",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_itemId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "from",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      }
+      { "internalType": "uint256", "name": "_itemId", "type": "uint256" },
+      { "internalType": "address", "name": "from", "type": "address" },
+      { "internalType": "address", "name": "to", "type": "address" }
     ],
     "name": "isTransactionReadyForReview",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "view",
     "type": "function"
   },
+  { "inputs": [], "name": "marketplaceContract", "outputs": [{ "internalType": "contract IMarketplace", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" },
+  { "inputs": [{ "internalType": "uint256", "name": "_itemId", "type": "uint256" }], "name": "raiseDispute", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
-    "inputs": [],
-    "name": "marketplaceContract",
-    "outputs": [
-      {
-        "internalType": "contract IMarketplace",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "owner",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_itemId",
-        "type": "uint256"
-      }
-    ],
-    "name": "raiseDispute",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "renounceOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_marketplaceContractAddress",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_marketplaceContractAddress", "type": "address" }],
     "name": "setMarketplaceContractAddress",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_usersContractAddress",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_usersContractAddress", "type": "address" }],
     "name": "setUsersContractAddress",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
+    "inputs": [{ "internalType": "string", "name": "", "type": "string" }],
     "name": "supportedTokens",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
-    ],
-    "name": "transferOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "usersContract",
-    "outputs": [
-      {
-        "internalType": "contract IUsers",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  }
+  { "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }], "name": "transferOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  { "inputs": [], "name": "usersContract", "outputs": [{ "internalType": "contract IUsers", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }
 ]

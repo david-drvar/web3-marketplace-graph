@@ -1,13 +1,13 @@
 {
-  "sepolia": {
+  "polygon-amoy": {
     "Marketplace": {
-      "address": "0x711e0Fe1f2Fb2af35D9D48252A2506AfaFCB7Da0"
+      "address": "0xF876b6409EEbcD7D76147747C527007C25182Bdc"
     },
     "Users": {
-      "address": "0x7336c03C02dbC1CA2f48F998966e8bea3CB24FD5"
+      "address": "0x79889f4C4D434A833394F0F730f8547C902eB444"
     },
     "Escrow": {
-      "address": "0xFc4815b9de685D433c7b403d0e94E72e8642f97a"
+      "address": "0x75d1081F8bebfE2Fa4d9D8fd22378611B6f3Cb6B"
     }
   }
 }
